@@ -1,0 +1,76 @@
+#scorersOutput {
+  display: none;
+  margin-top: 7vh;
+  padding-top: 7vh;
+  padding-bottom: 7vh;
+  min-height: 93vh;
+  position: relative;
+  z-index: 2;
+
+  .scorersWrap {
+    display: flex;
+    margin: auto;
+    max-width: 90%;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    .fas {
+      margin-right: 1rem;
+    }
+
+    .scorer {
+      position: relative;
+      background-color: #f4f4f4;
+      margin: 1.5em;
+      padding: 1em;
+      min-width: 300px;
+      min-height: 200px;
+      border-radius: 0.5em;
+      display: flex;
+      flex-direction: column;
+      filter: drop-shadow(-6px -6px 12px rgba(0, 0, 0, 0.2));
+
+      .team {
+        position: absolute;
+        right: -1rem;
+        bottom: 3.6rem;
+        background-color: var(--leagueTheme);
+        color: var(--leagueThemeText);
+        padding: 0.5rem;
+        padding-bottom: 1rem;
+        border-radius: 0.5rem;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+        box-shadow: -6px 0px 12px rgba(0, 0, 0, 0.2);
+
+        img {
+          margin: auto;
+          width: 2rem;
+        }
+      }
+
+      .goals {
+        position: absolute;
+        right: -1rem;
+        bottom: -1rem;
+        background-color: var(--leagueAccent);
+        padding: 1rem 1.25rem;
+        border-radius: 0.5rem;
+        border-top-right-radius: 0;
+        box-shadow: -6px -6px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .age {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        padding: 1rem;
+        border-top-right-radius: 0.5rem;
+        background-color: var(--leagueTheme);
+        color: var(--leagueThemeText);
+        box-shadow: 6px 0px 12px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}

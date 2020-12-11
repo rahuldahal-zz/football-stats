@@ -1,0 +1,16 @@
+/*
+*this "main" style-sheet will load all the "modules"
+*/
+
+@import "./modules/media";
+@import "./modules/colors";
+@import "./modules/base";
+@import "./modules/loader";
+@import "./modules/landingPage";
+@import "./modules/nav";
+@import "./modules/matches";
+@import "./modules/standings";
+@import "./modules/teams";
+@import "./modules/teamInfo";
+@import "./modules/scorers";
+@import "./modules/flashMessage";

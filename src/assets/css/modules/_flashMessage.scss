@@ -1,0 +1,101 @@
+.flashMessage {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  pointer-events: none;
+
+  &__message {
+    pointer-events: initial;
+    position: relative;
+    padding: 1.25em 1.5em;
+    text-align: center;
+    margin: 15vh auto;
+    width: max-content;
+    font-family: "roboto", var(--bodyFont);
+    border-radius: 0.5rem;
+    pointer-events: inherit;
+
+    @include for_768 {
+      padding: 1em;
+      width: 80%;
+    }
+  }
+}
+
+.flashMessage--active {
+  min-width: 200px;
+  box-shadow: -3px -8px 12px -6px rgba(0, 0, 0, 0.3);
+  &::before {
+    content: "I have a message that";
+    position: absolute;
+    top: -25%;
+    left: 0;
+    padding: 0.25em 0.5em;
+    background-color: #333;
+    color: #f4f4f4;
+    font-size: 0.9rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
+}
+
+.flashMessage--error {
+  background-color: #e31f1f;
+  color: #f4f4f4;
+  animation: error 0.5s ease-in-out forwards;
+}
+
+.flashMessage--warning {
+  background-color: #e3cd18;
+  color: #333;
+  animation: warning 0.5s ease-in-out forwards;
+}
+
+.flashMessage--success {
+  background-color: #0c991c;
+  color: #f4f4f4;
+  animation: success 0.5s ease-in-out;
+}
+
+@keyframes error {
+  0% {
+    transform: translateX(-10px);
+  }
+  25% {
+    transform: translateX(10px);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes warning {
+  0% {
+    transform: rotate(-10deg);
+  }
+  25% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
+@keyframes success {
+  25% {
+    background-color: lighten($color: #0c991c, $amount: 50);
+  }
+}
