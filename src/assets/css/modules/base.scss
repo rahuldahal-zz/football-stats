@@ -6,6 +6,11 @@
   box-sizing: border-box;
 }
 
+:root {
+  --headingFont: "Quicksand", sans-serif;
+  --bodyFont: "Roboto", "sans-serif";
+}
+
 button {
   border: 0;
   outline: 0;
@@ -20,7 +25,6 @@ body {
   background-image: url("/assets/images/background.webp");
   background-repeat: no-repeat;
   background-size: cover;
-  font-family: "Proza Libre", "serif";
   background-attachment: fixed !important;
   overflow-x: hidden;
 

@@ -69,6 +69,7 @@
       width: 100%;
       background-color: #000;
       color: #fff;
+      text-align: center;
       box-shadow: 0 -4px 8px -5px rgba(0, 0, 0, 0.6);
       transform-origin: bottom;
       transform: scaleY(0);
@@ -122,9 +123,8 @@
   }
 
   &__button {
-    border: none;
     outline: none;
-    display: inline-block;
+    display: flex;
     width: 150px !important;
     height: 120px;
     cursor: pointer;
@@ -151,5 +151,6 @@
   &__image {
     height: 60px;
     width: auto;
+    margin: auto;
   }
 }

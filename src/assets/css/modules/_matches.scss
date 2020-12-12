@@ -1,80 +1,70 @@
-#matchesOutput {
-  position: relative;
-  z-index: 2;
-  display: none;
-  min-height: 100vh;
-  width: 100vw;
+.clearLocalStorage {
+  color: #f4f4f4;
+
+  button {
+    display: block;
+    margin: auto;
+    margin-top: 1rem;
+  }
+}
+
+.matches {
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  margin-top: 10vh;
+  padding-bottom: 10vh;
+  min-height: 100%;
 
-  .clearLocalStorage {
-    color: #f4f4f4;
+  .match {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 1rem;
+    padding-bottom: 2rem;
+    margin: 2rem;
+    min-width: 300px;
+    min-height: 125px;
+    border-radius: 0.5rem;
 
-    button {
-      display: block;
-      margin: auto;
-      margin-top: 1rem;
+    @include for_600 {
+      width: 300px;
+    }
+
+    &__date {
+      position: absolute;
+      right: -1rem;
+      bottom: -1rem;
+      padding: 1em 1.25em;
+      border-radius: 0.5rem;
+      background-color: var(--leagueAccent);
+      box-shadow: -6px -6px 12px rgba(0, 0, 0, 0.1);
     }
   }
 
-  .matchesWrap {
+  .team {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10vh;
-    padding-bottom: 10vh;
-    min-height: 100%;
+    width: 100%;
+    justify-content: space-between;
+    align-items: baseline;
 
-    .match {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background-color: #f4f4f4;
-      color: #333;
-      padding: 1rem;
-      padding-bottom: 2rem;
-      margin: 2rem;
-      min-width: 300px;
-      min-height: 125px;
-      border-radius: 0.5rem;
+    strong {
+      margin: 0.5rem;
+    }
 
-      @include for_600 {
-        width: 300px;
-      }
+    &__name {
+      text-align: center;
+    }
 
-      .team {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        align-items: baseline;
-
-        h3 {
-          text-align: center;
-        }
-
-        strong {
-          margin: 0.5rem;
-        }
-
-        img {
-          display: block;
-          margin: auto;
-          width: 2.5rem;
-        }
-      }
-
-      .date {
-        position: absolute;
-        right: -1rem;
-        bottom: -1rem;
-        padding: 1em 1.25em;
-        border-radius: 0.5rem;
-        background-color: var(--leagueAccent);
-        box-shadow: -6px -6px 12px rgba(0, 0, 0, 0.1);
-      }
+    &__logo {
+      display: block;
+      margin: auto;
+      width: 2.5rem;
     }
   }
 }

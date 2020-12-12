@@ -1,0 +1,17 @@
+import React from "react";
+import {Link} from "@reach/router";
+
+const LeagueCard = ({leagueName})=>{
+    const leagueTrimmed = leagueName.toLowerCase().replace(" ", "");
+    return (
+        <Link to={`/${leagueTrimmed}/matches`} className="leagues__button clickable" title={leagueName}>
+            <img 
+                src={`https://footballstats.tk/assets/images/${leagueTrimmed}.png`} 
+                alt={`${leagueName} logo`} 
+                className="leagues__image"
+            />
+        </Link>
+    )
+}
+
+export default LeagueCard;
