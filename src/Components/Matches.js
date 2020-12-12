@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import LeagueDetails from "../utils/leagueDetails";
 import { fetchData } from "../utils/fetchData";
 import LocalStorage from "../utils/localStorage";
+import { showLoader, hideLoader } from "../utils/preloader";
 
 const leagueDetails = new LeagueDetails();
 
@@ -17,7 +18,6 @@ const Matches = ({ league }) => {
     function fetchUpcomingMatches(matchDay) {
       fetchData("matches", leagueId, { matchday: matchDay }).then(
         (result) => {
-          console.log(result);
           setIsLoaded(true);
           setMatches(result.matches);
         },
@@ -41,12 +41,17 @@ const Matches = ({ league }) => {
         fetchUpcomingMatches(matchDay);
       })
       .catch((err) => console.log(err));
-  }, [leagueId, matchDay]);
+  }, [league]);
+
+  useEffect(() => {
+    isLoaded && hideLoader();
+  }, [isLoaded]);
 
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
-    return <div>Loading...</div>;
+    showLoader();
+    return null;
   } else {
     return (
       <div className="matches">

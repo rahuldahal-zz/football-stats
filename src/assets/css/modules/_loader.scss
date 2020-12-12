@@ -1,5 +1,4 @@
-#loader {
-  display: none;
+.loader {
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -8,30 +7,33 @@
   background-color: #001925;
   color: #fff;
 
-  #loaderWrap {
+  &__wrap {
     text-align: center;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
 
-    img {
-      height: 100px;
-      background-color: #fff;
-      border-radius: 1rem;
-      padding: 10px 20px;
-      animation: loading 0.3s ease-in-out alternate infinite;
-    }
-    @keyframes loading {
-      50% {
-        transform: translateX(-10px);
-      }
-      100% {
-        transform: translateX(10px);
-      }
-    }
+  &__image {
+    width: auto;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 1rem;
+    padding: 10px 20px;
+    animation: loading 0.3s ease-in-out alternate infinite;
+  }
+
+  &__hidden {
+    display: none !important;
   }
 }
-.loaderActive {
-  display: block !important;
+
+@keyframes loading {
+  50% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(10px);
+  }
 }
