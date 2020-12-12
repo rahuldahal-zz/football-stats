@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import LeagueDetails from "../utils/leagueDetails";
-import {fetchData} from "../utils/fetchData";
+import { fetchData } from "../utils/fetchData";
+import LocalStorage from "../utils/localStorage";
 
 const leagueDetails = new LeagueDetails();
 
@@ -9,25 +10,38 @@ const Matches = ({ league }) => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [matches, setMatches] = useState([]);
+  const [matchDay, setMatchDay] = useState(1);
+  const [shortNames, setShortNames] = useState([]);
 
-  // Note: the empty deps array [] means
-  // this useEffect will run once
   useEffect(() => {
-    fetchData("matches", leagueId, {matchday: 6})
-      .then((result) => {
-        console.log(result);
+    function fetchUpcomingMatches(matchDay) {
+      fetchData("matches", leagueId, { matchday: matchDay }).then(
+        (result) => {
+          console.log(result);
           setIsLoaded(true);
           setMatches(result.matches);
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
         (error) => {
           setIsLoaded(true);
           setError(error);
         }
-      )
-  }, [leagueId])
+      );
+    }
+
+    fetchData(null, leagueId)
+      .then((leagueDetails) => {
+        setMatchDay(leagueDetails.currentSeason.currentMatchday);
+        return LocalStorage.prototype.isTeamNamesOnLocalStorage(
+          leagueId,
+          leagueDetails.currentSeason.startDate
+        );
+      })
+      .then((response) => {
+        setShortNames(response);
+        fetchUpcomingMatches(matchDay);
+      })
+      .catch((err) => console.log(err));
+  }, [leagueId, matchDay]);
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -36,31 +50,40 @@ const Matches = ({ league }) => {
   } else {
     return (
       <div className="matches">
-        {matches.map(match=>{
-              const {homeTeam, awayTeam, utcDate} = match;
-              const date = new Date(utcDate);
+        {matches.map((match) => {
+          let { homeTeam, awayTeam, utcDate } = match;
+          const date = new Date(utcDate);
+          homeTeam = shortNames.find((name) => name.id === homeTeam.id);
+          awayTeam = shortNames.find((name) => name.id === awayTeam.id);
 
-              return (
-                <div key={match.id} className="match">
-                  <div className="team">
-                    <div className="team__home">
-                      <img src={homeTeam.crestUrl} alt={`${homeTeam.name}logo`} className="team__logo" />
-                      <h3 className="team__name">{homeTeam.name}</h3>
-                    </div>
-                    <strong>v/s</strong>
-                    <div className="awayTeam">
-                      <img src={awayTeam.crestUrl} alt={`${awayTeam.name}logo`} className="team__logo" />
-                      <h3 className="team__name" >{awayTeam.name}</h3>
-                    </div>
-                  </div>
-                  <small className="match__date">{date.toLocaleString()}</small>
+          return (
+            <div key={match.id} className="match">
+              <div className="team">
+                <div className="team__home">
+                  <img
+                    src={homeTeam.crestUrl}
+                    alt={`${homeTeam.shortName}logo`}
+                    className="team__logo"
+                  />
+                  <h3 className="team__name">{homeTeam.shortName}</h3>
                 </div>
-              )
+                <strong>v/s</strong>
+                <div className="awayTeam">
+                  <img
+                    src={awayTeam.crestUrl}
+                    alt={`${awayTeam.shortName}logo`}
+                    className="team__logo"
+                  />
+                  <h3 className="team__name">{awayTeam.shortName}</h3>
+                </div>
+              </div>
+              <small className="match__date">{date.toLocaleString()}</small>
+            </div>
+          );
         })}
       </div>
     );
   }
-}
-
+};
 
 export default Matches;
