@@ -3,5 +3,6 @@ node_modules/
 .cache/
 dist/
 build/
+src/backupData/
 coverage/
 .env

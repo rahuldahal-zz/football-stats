@@ -18,11 +18,11 @@ const App = function () {
 
   return (
     <>
-      <Loader />
       <Router>
         <Landing path="/" />
         <Matches path="/:league/matches" />
       </Router>
+      <Loader />
     </>
   );
 };

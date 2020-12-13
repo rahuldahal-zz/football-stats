@@ -3,6 +3,8 @@ import LeagueDetails from "../utils/leagueDetails";
 import { fetchData } from "../utils/fetchData";
 import LocalStorage from "../utils/localStorage";
 import { showLoader, hideLoader } from "../utils/preloader";
+import Nav from "./Nav";
+import Header from "./Header";
 
 const leagueDetails = new LeagueDetails();
 
@@ -54,39 +56,43 @@ const Matches = ({ league }) => {
     return null;
   } else {
     return (
-      <div className="matches">
-        {matches.map((match) => {
-          let { homeTeam, awayTeam, utcDate } = match;
-          const date = new Date(utcDate);
-          homeTeam = shortNames.find((name) => name.id === homeTeam.id);
-          awayTeam = shortNames.find((name) => name.id === awayTeam.id);
+      <>
+        <Header />
+        <Nav leagueName={league} />
+        <div className="matches">
+          {matches.map((match) => {
+            let { homeTeam, awayTeam, utcDate } = match;
+            const date = new Date(utcDate);
+            homeTeam = shortNames.find((name) => name.id === homeTeam.id);
+            awayTeam = shortNames.find((name) => name.id === awayTeam.id);
 
-          return (
-            <div key={match.id} className="match">
-              <div className="team">
-                <div className="team__home">
-                  <img
-                    src={homeTeam.crestUrl}
-                    alt={`${homeTeam.shortName}logo`}
-                    className="team__logo"
-                  />
-                  <h3 className="team__name">{homeTeam.shortName}</h3>
+            return (
+              <div key={match.id} className="match">
+                <div className="team">
+                  <div className="team__home">
+                    <img
+                      src={homeTeam.crestUrl}
+                      alt={`${homeTeam.shortName}logo`}
+                      className="team__logo"
+                    />
+                    <h3 className="team__name">{homeTeam.shortName}</h3>
+                  </div>
+                  <strong>v/s</strong>
+                  <div className="awayTeam">
+                    <img
+                      src={awayTeam.crestUrl}
+                      alt={`${awayTeam.shortName}logo`}
+                      className="team__logo"
+                    />
+                    <h3 className="team__name">{awayTeam.shortName}</h3>
+                  </div>
                 </div>
-                <strong>v/s</strong>
-                <div className="awayTeam">
-                  <img
-                    src={awayTeam.crestUrl}
-                    alt={`${awayTeam.shortName}logo`}
-                    className="team__logo"
-                  />
-                  <h3 className="team__name">{awayTeam.shortName}</h3>
-                </div>
+                <small className="match__date">{date.toLocaleString()}</small>
               </div>
-              <small className="match__date">{date.toLocaleString()}</small>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      </>
     );
   }
 };
