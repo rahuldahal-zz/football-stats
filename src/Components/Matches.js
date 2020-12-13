@@ -13,11 +13,11 @@ const Matches = ({ league }) => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [matches, setMatches] = useState([]);
-  const [matchDay, setMatchDay] = useState(1);
+  const [matchDay, setMatchDay] = useState(null);
   const [shortNames, setShortNames] = useState([]);
 
   useEffect(() => {
-    function fetchUpcomingMatches(matchDay) {
+    function fetchUpcomingMatches() {
       fetchData("matches", leagueId, { matchday: matchDay }).then(
         (result) => {
           setIsLoaded(true);
@@ -30,20 +30,25 @@ const Matches = ({ league }) => {
       );
     }
 
-    fetchData(null, leagueId)
-      .then((leagueDetails) => {
-        setMatchDay(leagueDetails.currentSeason.currentMatchday);
-        return LocalStorage.prototype.isTeamNamesOnLocalStorage(
-          leagueId,
-          leagueDetails.currentSeason.startDate
-        );
-      })
-      .then((response) => {
-        setShortNames(response);
-        fetchUpcomingMatches(matchDay);
-      })
-      .catch((err) => console.log(err));
-  }, [league]);
+    // only fetch matches when matchDay is set.
+
+    matchDay && fetchUpcomingMatches();
+
+    // only fetch data when matchDay is not set, via setMatchDay
+    matchDay === null &&
+      fetchData(null, leagueId)
+        .then((leagueDetails) => {
+          setMatchDay(leagueDetails.currentSeason.currentMatchday);
+          return LocalStorage.prototype.isTeamNamesOnLocalStorage(
+            leagueId,
+            leagueDetails.currentSeason.startDate
+          );
+        })
+        .then((response) => {
+          setShortNames(response);
+        })
+        .catch((err) => console.log(err));
+  }, [league, matchDay]);
 
   useEffect(() => {
     isLoaded && hideLoader();

@@ -23,7 +23,7 @@ const onlineEndpoints = (id, params) => {
 export function fetchData(dataToBeFetched, id, params) {
   params = new URLSearchParams(params).toString();
   const { leagueDetails, standings, teams, particularTeam, matches, scorers } =
-    process.env.NODE_ENV === "development"
+    process.env.NODE_ENV === "developme"
       ? offlineEndpoints(id)
       : onlineEndpoints(id, params);
 
