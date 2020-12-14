@@ -4,29 +4,57 @@ import React from "react";
 const Header = () => {
   return (
     <header className="header">
-      <button className="header__leagues" tabIndex="0">
+      <div
+        className="header__leagues"
+        role="button"
+        tabIndex="0"
+        onFocus={(e) => {
+          e.target.children[1] &&
+            e.target.children[1].classList.toggle("dropdown--active");
+        }}
+      >
         <div id="selected">
           <span>Premier League</span>
           <i className="fas fa-caret-down"></i>
         </div>
         <div className="dropdown">
-          <Link to="/premierleague/matches" className="dropdown__item">
+          <Link
+            to="/premierleague/matches"
+            state={{ refresh: true }}
+            className="dropdown__item"
+          >
             Premier League
           </Link>
-          <Link to="/laliga/matches" className="dropdown__item">
+          <Link
+            to="/laliga/matches"
+            state={{ refresh: true }}
+            className="dropdown__item"
+          >
             La Liga
           </Link>
-          <Link to="/bundesliga/matches" className="dropdown__item">
+          <Link
+            to="/bundesliga/matches"
+            state={{ refresh: true }}
+            className="dropdown__item"
+          >
             Bundesliga
           </Link>
-          <Link to="/seriea/matches" className="dropdown__item">
+          <Link
+            to="/seriea/matches"
+            state={{ refresh: true }}
+            className="dropdown__item"
+          >
             Serie A
           </Link>
-          <Link to="/ligueone/matches" className="dropdown__item">
+          <Link
+            to="/ligueone/matches"
+            state={{ refresh: true }}
+            className="dropdown__item"
+          >
             Ligue 1
           </Link>
         </div>
-      </button>
+      </div>
       <span id="author">
         by{" "}
         <a href="https://rahuldahal.com.np" target="_blank" rel="noreferrer">

@@ -59,12 +59,21 @@
 
     &__name {
       text-align: center;
+      font-weight: bold;
     }
 
     &__logo {
       display: block;
       margin: auto;
       width: 2.5rem;
+      height: 2.5rem;
+      border: 2px solid blue;
+
+      &--loaded {
+        height: auto;
+        max-height: 3.125rem;
+        border: none;
+      }
     }
   }
 }

@@ -29,6 +29,7 @@
       background-color: var(--leagueTheme);
       color: var(--leagueThemeText);
       text-align: center;
+      font-weight: bold;
       padding-top: 20px;
       cursor: pointer;
       transition: transform 0.5s 0.5s cubic-bezier(0.75, -0.5, 0, 1.75);
@@ -47,11 +48,17 @@
     .dropdown {
       margin-top: -20px;
       transform: scaleY(0);
+      pointer-events: none;
       transform-origin: top;
       transition: transform 0.3s ease-out;
       padding-top: 20px;
       background-color: #fff;
       box-shadow: 0 9px 18px -8px rgba(0, 0, 0, 0.4);
+
+      &--active {
+        transform: scaleY(1);
+        pointer-events: initial;
+      }
 
       &__item {
         display: block;
@@ -74,7 +81,7 @@
     color: #eee;
     margin-top: 2vh;
     margin-right: 30px;
-    font-size: 0.8rem;
+    font-size: 1rem;
 
     @include for_768 {
       margin-right: 20px;
