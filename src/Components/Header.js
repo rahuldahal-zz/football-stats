@@ -1,7 +1,7 @@
 import { Link } from "@reach/router";
 import React from "react";
 
-const Header = () => {
+const Header = ({ leagueName }) => {
   return (
     <header className="header">
       <div
@@ -14,43 +14,23 @@ const Header = () => {
         }}
       >
         <div id="selected">
-          <span>Premier League</span>
+          <span>{leagueName}</span>
           <i className="fas fa-caret-down"></i>
         </div>
         <div className="dropdown">
-          <Link
-            to="/premierleague/matches"
-            state={{ refresh: true }}
-            className="dropdown__item"
-          >
+          <Link to="/premierleague/matches" className="dropdown__item">
             Premier League
           </Link>
-          <Link
-            to="/laliga/matches"
-            state={{ refresh: true }}
-            className="dropdown__item"
-          >
+          <Link to="/laliga/matches" className="dropdown__item">
             La Liga
           </Link>
-          <Link
-            to="/bundesliga/matches"
-            state={{ refresh: true }}
-            className="dropdown__item"
-          >
+          <Link to="/bundesliga/matches" className="dropdown__item">
             Bundesliga
           </Link>
-          <Link
-            to="/seriea/matches"
-            state={{ refresh: true }}
-            className="dropdown__item"
-          >
+          <Link to="/seriea/matches" className="dropdown__item">
             Serie A
           </Link>
-          <Link
-            to="/ligueone/matches"
-            state={{ refresh: true }}
-            className="dropdown__item"
-          >
+          <Link to="/ligueun/matches" className="dropdown__item">
             Ligue 1
           </Link>
         </div>

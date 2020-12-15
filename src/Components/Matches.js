@@ -8,18 +8,16 @@ import Header from "./Header";
 
 const leagueDetails = new LeagueDetails();
 
-const Matches = ({ league, location }) => {
+const Matches = ({ league }) => {
   const leagueId = leagueDetails.getId(league);
+  const leagueFullName = leagueDetails.getFullName(league);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [matches, setMatches] = useState([]);
   const [matchDay, setMatchDay] = useState(null);
   const [shortNames, setShortNames] = useState({});
 
-  console.log(leagueId);
-
   useEffect(() => {
-    console.log("nullifying matchday");
     setMatchDay(null);
   }, [league]);
 
@@ -27,7 +25,6 @@ const Matches = ({ league, location }) => {
     matchDay === null &&
       fetchData(null, leagueId)
         .then((leagueDetails) => {
-          console.log("setting matchday");
           setMatchDay(leagueDetails.currentSeason.currentMatchday);
           return LocalStorage.prototype.isTeamNamesOnLocalStorage(
             leagueId,
@@ -35,20 +32,16 @@ const Matches = ({ league, location }) => {
           );
         })
         .then((response) => {
-          console.log("setting shortName");
           setShortNames({ league: leagueId, data: response });
-          // matchDay && fetchUpcomingMatches();
         })
         .catch((err) => console.log(err));
   }, [matchDay]);
 
   useEffect(() => {
-    console.log("fetching matches with", shortNames.league);
     shortNames.league &&
       fetchData("matches", leagueId, { matchday: matchDay }).then(
         (result) => {
           setMatches(result.matches);
-          console.log(shortNames.league, leagueId);
           setIsLoaded(true);
         },
         (error) => {
@@ -75,7 +68,7 @@ const Matches = ({ league, location }) => {
     console.log("sn", shortNames.league);
     return (
       <>
-        <Header />
+        <Header leagueName={leagueFullName} />
         <Nav leagueName={league} />
 
         <div className="matches">
@@ -91,7 +84,7 @@ const Matches = ({ league, location }) => {
                   <div className="team__home">
                     <img
                       src={homeTeam.crestUrl}
-                      alt={`${homeTeam.shortName}logo`}
+                      alt={`${homeTeam.shortName} logo`}
                       onLoad={(e) =>
                         e.target.classList.add("team__logo--loaded")
                       }
@@ -103,7 +96,7 @@ const Matches = ({ league, location }) => {
                   <div className="awayTeam">
                     <img
                       src={awayTeam.crestUrl}
-                      alt={`${awayTeam.shortName}logo`}
+                      alt={`${awayTeam.shortName} logo`}
                       onLoad={(e) =>
                         e.target.classList.add("team__logo--loaded")
                       }

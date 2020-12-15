@@ -33,7 +33,7 @@
     border-radius: 0.5rem;
 
     @include for_600 {
-      width: 300px;
+      width: 320px;
     }
 
     &__date {
@@ -50,8 +50,8 @@
   .team {
     display: flex;
     width: 100%;
-    justify-content: space-between;
-    align-items: baseline;
+    justify-content: space-around;
+    align-items: center;
 
     strong {
       margin: 0.5rem;
@@ -60,6 +60,12 @@
     &__name {
       text-align: center;
       font-weight: bold;
+      width: max-content;
+
+      @include for_600 {
+        max-width: 150px;
+        overflow-x: auto;
+      }
     }
 
     &__logo {
@@ -68,6 +74,7 @@
       width: 2.5rem;
       height: 2.5rem;
       border: 2px solid blue;
+      font-size: 0.6rem;
 
       &--loaded {
         height: auto;
