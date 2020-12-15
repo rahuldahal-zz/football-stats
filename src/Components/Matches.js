@@ -44,17 +44,18 @@ const Matches = ({ league, location }) => {
 
   useEffect(() => {
     console.log("fetching matches with", shortNames.league);
-    fetchData("matches", leagueId, { matchday: matchDay }).then(
-      (result) => {
-        setMatches(result.matches);
-        console.log(shortNames.league, leagueId);
-        setIsLoaded(true);
-      },
-      (error) => {
-        setIsLoaded(true);
-        setError(error);
-      }
-    );
+    shortNames.league &&
+      fetchData("matches", leagueId, { matchday: matchDay }).then(
+        (result) => {
+          setMatches(result.matches);
+          console.log(shortNames.league, leagueId);
+          setIsLoaded(true);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      );
   }, [shortNames]);
 
   useEffect(() => {
