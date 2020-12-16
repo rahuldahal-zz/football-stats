@@ -2,11 +2,26 @@ import React, { useEffect, useState } from "react";
 import LeagueDetails from "../utils/leagueDetails";
 import { fetchData } from "../utils/fetchData";
 import LocalStorage from "../utils/localStorage";
+import dateDifference from "../utils/dateDifference";
 import { showLoader, hideLoader } from "../utils/preloader";
 import Nav from "./Nav";
 import Header from "./Header";
 
 const leagueDetails = new LeagueDetails();
+
+const Countdown = ({ homeTeam, awayTeam, utcDate }) => {
+  return (
+    <div className="countdown">
+      <Team homeTeam={homeTeam} awayTeam={awayTeam} />
+      <strong>
+        {dateDifference({
+          date: new Date(utcDate),
+          time: "future",
+        })}
+      </strong>
+    </div>
+  );
+};
 
 const Matches = ({ league }) => {
   const leagueId = leagueDetails.getId(league);
@@ -16,6 +31,7 @@ const Matches = ({ league }) => {
   const [matches, setMatches] = useState([]);
   const [matchDay, setMatchDay] = useState(null);
   const [shortNames, setShortNames] = useState({});
+  const [selectedMatch, setSelectedMatch] = useState(null);
 
   useEffect(() => {
     setMatchDay(null);
@@ -79,40 +95,63 @@ const Matches = ({ league }) => {
             awayTeam = shortNames.data.find((name) => name.id === awayTeam.id);
 
             return (
-              <div key={match.id} className="match">
-                <div className="team">
-                  <div className="team__home">
-                    <img
-                      src={homeTeam.crestUrl}
-                      alt={`${homeTeam.shortName} logo`}
-                      onLoad={(e) =>
-                        e.target.classList.add("team__logo--loaded")
-                      }
-                      className="team__logo"
-                    />
-                    <h3 className="team__name">{homeTeam.shortName}</h3>
-                  </div>
-                  <strong>v/s</strong>
-                  <div className="awayTeam">
-                    <img
-                      src={awayTeam.crestUrl}
-                      alt={`${awayTeam.shortName} logo`}
-                      onLoad={(e) =>
-                        e.target.classList.add("team__logo--loaded")
-                      }
-                      className="team__logo"
-                    />
-                    <h3 className="team__name">{awayTeam.shortName}</h3>
-                  </div>
-                </div>
+              <div
+                key={match.id}
+                className="match"
+                role="button"
+                tabIndex="0"
+                onClick={() =>
+                  setSelectedMatch({ homeTeam, awayTeam, utcDate })
+                }
+                onKeyDown={() =>
+                  setSelectedMatch({ homeTeam, awayTeam, utcDate })
+                }
+              >
+                <Team homeTeam={homeTeam} awayTeam={awayTeam} />
                 <small className="match__date">{date.toLocaleString()}</small>
               </div>
             );
           })}
         </div>
+
+        {selectedMatch ? (
+          <Countdown
+            homeTeam={selectedMatch.homeTeam}
+            awayTeam={selectedMatch.awayTeam}
+            utcDate={selectedMatch.utcDate}
+          />
+        ) : (
+          []
+        )}
       </>
     );
   }
 };
+
+function Team({ homeTeam, awayTeam }) {
+  return (
+    <div className="team">
+      <div className="team__home">
+        <img
+          src={homeTeam.crestUrl}
+          alt={`${homeTeam.shortName} logo`}
+          onLoad={(e) => e.target.classList.add("team__logo--loaded")}
+          className="team__logo"
+        />
+        <h3 className="team__name">{homeTeam.shortName}</h3>
+      </div>
+      <strong>v/s</strong>
+      <div className="awayTeam">
+        <img
+          src={awayTeam.crestUrl}
+          alt={`${awayTeam.shortName} logo`}
+          onLoad={(e) => e.target.classList.add("team__logo--loaded")}
+          className="team__logo"
+        />
+        <h3 className="team__name">{awayTeam.shortName}</h3>
+      </div>
+    </div>
+  );
+}
 
 export default Matches;
