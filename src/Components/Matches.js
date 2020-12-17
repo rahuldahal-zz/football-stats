@@ -9,19 +9,21 @@ import Header from "./Header";
 
 const leagueDetails = new LeagueDetails();
 
-const Countdown = ({ homeTeam, awayTeam, utcDate }) => {
+function Countdown({ utcDate, status, fullTime }) {
   return (
-    <div className="countdown">
-      <Team homeTeam={homeTeam} awayTeam={awayTeam} />
+    <div className="match__countdown">
       <strong>
-        {dateDifference({
-          date: new Date(utcDate),
-          time: "future",
-        })}
+        {status === "FINISHED"
+          ? `Finished ${fullTime.homeTeam} : ${fullTime.awayTeam}`
+          : dateDifference({
+              date: new Date(utcDate),
+              time: "future",
+            })}
       </strong>
+      <i className="fas fa-bell"></i>
     </div>
   );
-};
+}
 
 const Matches = ({ league }) => {
   const leagueId = leagueDetails.getId(league);
@@ -31,7 +33,6 @@ const Matches = ({ league }) => {
   const [matches, setMatches] = useState([]);
   const [matchDay, setMatchDay] = useState(null);
   const [shortNames, setShortNames] = useState({});
-  const [selectedMatch, setSelectedMatch] = useState(null);
 
   useEffect(() => {
     setMatchDay(null);
@@ -81,7 +82,6 @@ const Matches = ({ league }) => {
     showLoader();
     return null;
   } else {
-    console.log("sn", shortNames.league);
     return (
       <>
         <Header leagueName={leagueFullName} />
@@ -89,7 +89,7 @@ const Matches = ({ league }) => {
 
         <div className="matches">
           {matches.map((match) => {
-            let { homeTeam, awayTeam, utcDate } = match;
+            let { homeTeam, awayTeam, utcDate, status, score } = match;
             const date = new Date(utcDate);
             homeTeam = shortNames.data.find((name) => name.id === homeTeam.id);
             awayTeam = shortNames.data.find((name) => name.id === awayTeam.id);
@@ -100,29 +100,22 @@ const Matches = ({ league }) => {
                 className="match"
                 role="button"
                 tabIndex="0"
-                onClick={() =>
-                  setSelectedMatch({ homeTeam, awayTeam, utcDate })
-                }
-                onKeyDown={() =>
-                  setSelectedMatch({ homeTeam, awayTeam, utcDate })
-                }
+                onFocus={(e) => {
+                  toggleCountdown(e);
+                }}
+                onBlur={(e) => toggleCountdown(e)}
               >
                 <Team homeTeam={homeTeam} awayTeam={awayTeam} />
+                <Countdown
+                  utcDate={utcDate}
+                  status={status}
+                  fullTime={score.fullTime}
+                />
                 <small className="match__date">{date.toLocaleString()}</small>
               </div>
             );
           })}
         </div>
-
-        {selectedMatch ? (
-          <Countdown
-            homeTeam={selectedMatch.homeTeam}
-            awayTeam={selectedMatch.awayTeam}
-            utcDate={selectedMatch.utcDate}
-          />
-        ) : (
-          []
-        )}
       </>
     );
   }
@@ -152,6 +145,37 @@ function Team({ homeTeam, awayTeam }) {
       </div>
     </div>
   );
+}
+
+function toggleCountdown(e) {
+  e.currentTarget.classList.toggle("match--active");
+}
+
+function setTransformOrigin(element) {
+  const { x, y } = element.getBoundingClientRect();
+  const THRESHOLD_X = 200;
+  const THRESHOLD_Y = 45;
+  let transformOrigin = [];
+
+  if (x < window.innerWidth / 2 - THRESHOLD_X) {
+    transformOrigin.push("left");
+  } else if (x > window.innerWidth / 2 + THRESHOLD_X) {
+    transformOrigin.push("right");
+  } else {
+    transformOrigin.push("center");
+  }
+
+  if (y < window.innerHeight / 2 - THRESHOLD_Y) {
+    transformOrigin.push("top");
+  } else if (y > window.innerHeight / 2 + THRESHOLD_Y) {
+    transformOrigin.push("bottom");
+  } else {
+    transformOrigin.push("center");
+  }
+
+  transformOrigin = transformOrigin.join(" ");
+
+  element.style.transformOrigin = transformOrigin;
 }
 
 export default Matches;

@@ -23,7 +23,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #f4f4f4;
+    background-color: transparent;
     color: #333;
     padding: 1rem;
     padding-bottom: 2rem;
@@ -31,10 +31,47 @@
     min-width: 300px;
     min-height: 125px;
     border-radius: 0.5rem;
+    cursor: pointer;
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #f4f4f4;
+      border-radius: 0.5rem;
+      box-shadow: 6px 6px 12px -3px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease-in-out;
+      transform-origin: inherit;
+    }
 
     @include for_600 {
       width: 90vw;
       margin: 2rem 1rem;
+    }
+
+    &--active {
+      z-index: 10;
+
+      &::before {
+        transform: scale(1.3);
+
+        @include for_600 {
+          transform: scaleY(1.3);
+        }
+      }
+
+      .match__date {
+        opacity: 0;
+      }
+
+      .match__countdown {
+        opacity: 1;
+        transform: translateY(0) translateX(-50%);
+      }
     }
 
     &__date {
@@ -44,11 +81,29 @@
       padding: 1em 1.25em;
       border-radius: 0.5rem;
       background-color: var(--leagueAccent);
+      transition: opacity 0.3s ease-in-out;
       box-shadow: -6px -6px 12px rgba(0, 0, 0, 0.1);
 
       @include for_600 {
         right: -0.5rem;
       }
+    }
+
+    &__countdown {
+      position: absolute;
+      bottom: -1rem;
+      left: 50%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 90%;
+      background-color: var(--leagueTheme);
+      color: var(--leagueAccent);
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      opacity: 0;
+      transform: translateY(-5px) translateX(-50%);
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     }
   }
 }
@@ -87,33 +142,5 @@
       max-height: 3.125rem;
       border: none;
     }
-  }
-}
-
-.countdown {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
-  max-width: 640px;
-  max-height: 320px;
-  background-color: var(--leagueTheme);
-  color: var(--leagueAccent);
-  padding: 0.5rem;
-  padding-top: 10vh;
-
-  @include for_600 {
-    top: 0;
-    left: 0;
-    transform: translate(0, 0);
-    width: 100%;
-    height: 100%;
-    max-width: unset;
-    max-height: unset;
   }
 }
