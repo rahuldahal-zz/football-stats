@@ -12,15 +12,15 @@ const leagueDetails = new LeagueDetails();
 function Countdown({ utcDate, status, fullTime }) {
   return (
     <div className="match__countdown">
-      <strong>
+      <em className="match__status">
         {status === "FINISHED"
           ? `Finished ${fullTime.homeTeam} : ${fullTime.awayTeam}`
           : dateDifference({
               date: new Date(utcDate),
               time: "future",
             })}
-      </strong>
-      <i className="fas fa-bell"></i>
+      </em>
+      <i className="fas fa-bell match__bell"></i>
     </div>
   );
 }
@@ -100,9 +100,7 @@ const Matches = ({ league }) => {
                 className="match"
                 role="button"
                 tabIndex="0"
-                onFocus={(e) => {
-                  toggleCountdown(e);
-                }}
+                onFocus={(e) => toggleCountdown(e)}
                 onBlur={(e) => toggleCountdown(e)}
               >
                 <Team homeTeam={homeTeam} awayTeam={awayTeam} />
@@ -149,33 +147,6 @@ function Team({ homeTeam, awayTeam }) {
 
 function toggleCountdown(e) {
   e.currentTarget.classList.toggle("match--active");
-}
-
-function setTransformOrigin(element) {
-  const { x, y } = element.getBoundingClientRect();
-  const THRESHOLD_X = 200;
-  const THRESHOLD_Y = 45;
-  let transformOrigin = [];
-
-  if (x < window.innerWidth / 2 - THRESHOLD_X) {
-    transformOrigin.push("left");
-  } else if (x > window.innerWidth / 2 + THRESHOLD_X) {
-    transformOrigin.push("right");
-  } else {
-    transformOrigin.push("center");
-  }
-
-  if (y < window.innerHeight / 2 - THRESHOLD_Y) {
-    transformOrigin.push("top");
-  } else if (y > window.innerHeight / 2 + THRESHOLD_Y) {
-    transformOrigin.push("bottom");
-  } else {
-    transformOrigin.push("center");
-  }
-
-  transformOrigin = transformOrigin.join(" ");
-
-  element.style.transformOrigin = transformOrigin;
 }
 
 export default Matches;
