@@ -1,25 +1,33 @@
-#standingsOutput {
+.standingsOutput {
+  display: flex;
   position: relative;
   z-index: 2;
   max-width: 1366px;
   margin: 15vh auto;
-  display: none;
   width: 75vw;
   padding: 0 20px;
   flex-direction: column-reverse;
+  justify-content: center;
   filter: drop-shadow(5px -5px 20px rgba(0, 0, 0, 0.5));
 
   @include for_768 {
     padding: 0 5px;
     width: 100vw;
   }
-  table {
-    // border: 1px solid black;
+  &__table {
+    border: none;
     border-collapse: collapse;
 
     @include for_768 {
       width: 100%;
     }
+  }
+
+  tr,
+  th,
+  td {
+    border: none;
+    text-align: center;
   }
 
   th,
@@ -85,6 +93,11 @@
     &:last-child {
       color: var(--leagueThemeText);
     }
+
+    &:nth-child(2) {
+      text-align: left;
+    }
+
     img {
       height: 20px;
       max-width: 20px;
@@ -98,38 +111,43 @@
     }
   }
 
-  #standingsOutput__filter {
-    #filterButtonsWrap {
-      display: flex;
-      width: max-content;
+  .filterButton {
+    display: flex;
+    width: max-content;
+
+    @include for_768 {
+      width: 100%;
+    }
+
+    &__btn {
+      cursor: pointer;
+      border-right: 2px solid #f4f4f4;
+      border-radius: unset;
+      transition: background-color 0.2s ease;
 
       @include for_768 {
-        width: 100%;
+        padding: 0.5rem 0.75rem;
       }
 
-      button {
-        cursor: pointer;
-        border-right: 2px solid #ccc;
-        transition: background-color 0.2s ease;
+      &:hover,
+      &:focus {
+        background-color: var(--leagueTheme);
+        transform: translateY(0);
+      }
 
-        @include for_768 {
-          padding: 0.5rem 0.75rem;
-        }
+      &:last-child {
+        border-right: 0;
+        border-top-right-radius: 0.5rem;
+      }
 
-        &:hover,
-        &:focus {
-          background-color: var(--leagueTheme);
-        }
+      &:first-child {
+        border-top-left-radius: 0.5rem;
+      }
 
-        &:last-child {
-          border-right: 0;
-          border-top-right-radius: 0.5rem;
-        }
+      &--active {
+        background-color: var(--leagueTheme);
+        color: var(--leagueThemeText);
       }
     }
-  }
-  .activeFilter {
-    background-color: var(--leagueTheme);
-    color: var(--leagueThemeText);
   }
 }

@@ -17,7 +17,7 @@ import "./assets/css/style.scss";
 const App = function () {
   useEffect(() => {
     hideLoader();
-  });
+  }, []);
 
   return (
     <>
