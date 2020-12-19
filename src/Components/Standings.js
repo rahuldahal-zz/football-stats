@@ -36,7 +36,7 @@ const Standings = ({ location, league }) => {
     shortNames.league &&
       fetchData("standings", leagueId).then(
         (result) => {
-          setStandings(result.standings[0]);
+          setStandings(result.standings);
           setIsLoaded(true);
         },
         (error) => {
@@ -60,7 +60,18 @@ const Standings = ({ location, league }) => {
     showLoader();
     return null;
   } else {
-    console.log(standings);
+    let standingsTable;
+    switch (standingsType) {
+      case "HOME":
+        standingsTable = standings[1].table;
+        break;
+      case "AWAY":
+        standingsTable = standings[2].table;
+        break;
+      default:
+        standingsTable = standings[0].table;
+    }
+    console.log(standingsType);
     return (
       <>
         <Header leagueName={leagueFullName} />
@@ -71,7 +82,6 @@ const Standings = ({ location, league }) => {
               <tr>
                 {window.innerWidth > 600 ? (
                   <>
-                    {" "}
                     <th>Position</th>
                     <th>Team</th>
                     <th>Played</th>
@@ -85,7 +95,6 @@ const Standings = ({ location, league }) => {
                   </>
                 ) : (
                   <>
-                    {" "}
                     <th></th>
                     <th>T</th>
                     <th>P</th>
@@ -102,7 +111,7 @@ const Standings = ({ location, league }) => {
             </thead>
 
             <tbody>
-              {standings.table.map((standing) => {
+              {standingsTable.map((standing) => {
                 let {
                   team,
                   position,
@@ -145,13 +154,22 @@ const Standings = ({ location, league }) => {
               <button
                 className="filterButton__btn filterButton__btn--active"
                 data-table-type="TOTAL"
+                onFocus={(e) => standingsTypeHandler(e)}
               >
                 Overall
               </button>
-              <button className="filterButton__btn" data-table-type="HOME">
+              <button
+                className="filterButton__btn"
+                data-table-type="HOME"
+                onFocus={(e) => standingsTypeHandler(e)}
+              >
                 Home
               </button>
-              <button className="filterButton__btn" data-table-type="AWAY">
+              <button
+                className="filterButton__btn"
+                data-table-type="AWAY"
+                onFocus={(e) => standingsTypeHandler(e)}
+              >
                 Away
               </button>
             </div>
@@ -159,6 +177,16 @@ const Standings = ({ location, league }) => {
         </div>
       </>
     );
+  }
+
+  function standingsTypeHandler(e) {
+    document
+      .querySelector(`[data-table-type=${standingsType}]`)
+      .classList.remove("filterButton__btn--active");
+
+    e.currentTarget.classList.add("filterButton__btn--active");
+
+    setStandingsType(e.currentTarget.dataset.tableType);
   }
 };
 
