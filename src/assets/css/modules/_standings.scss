@@ -121,8 +121,10 @@
 
     &__btn {
       cursor: pointer;
-      border-right: 2px solid #f4f4f4;
+      border-right: 2px solid var(--leagueTheme);
       border-radius: unset;
+      background-color: var(--leagueThemeText);
+      color: var(--leagueTheme);
       transition: background-color 0.2s ease;
 
       @include for_768 {

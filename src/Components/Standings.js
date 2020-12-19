@@ -19,6 +19,7 @@ const Standings = ({ location, league }) => {
 
   useEffect(() => {
     setStandings(null);
+    changeLeagueTheme(league);
 
     fetchData(null, leagueId)
       .then((leagueDetails) => {
@@ -71,7 +72,6 @@ const Standings = ({ location, league }) => {
       default:
         standingsTable = standings[0].table;
     }
-    console.log(standingsType);
     return (
       <>
         <Header leagueName={leagueFullName} />
@@ -176,6 +176,22 @@ const Standings = ({ location, league }) => {
           </aside>
         </div>
       </>
+    );
+  }
+
+  function changeLeagueTheme(leagueName) {
+    const root = document.documentElement;
+    root.style.setProperty(
+      "--leagueTheme",
+      LeagueDetails.prototype.getHexColor(leagueName)
+    );
+    root.style.setProperty(
+      "--leagueThemeRGB",
+      LeagueDetails.prototype.getRGBColor(leagueName)
+    );
+    root.style.setProperty(
+      "--leagueAccent",
+      LeagueDetails.prototype.getAccentColor(leagueName)
     );
   }
 

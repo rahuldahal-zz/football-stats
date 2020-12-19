@@ -36,6 +36,7 @@ const Matches = ({ league }) => {
 
   useEffect(() => {
     setMatchDay(null);
+    changeLeagueTheme(league);
   }, [league]);
 
   useEffect(() => {
@@ -85,7 +86,7 @@ const Matches = ({ league }) => {
     return (
       <>
         <Header leagueName={leagueFullName} />
-        <Nav leagueName={league} />
+        <Nav leagueName={league} selected="matches" />
 
         <div className="matches">
           {matches.map((match) => {
@@ -147,6 +148,22 @@ function Team({ homeTeam, awayTeam }) {
 
 function toggleCountdown(e) {
   e.currentTarget.classList.toggle("match--active");
+}
+
+function changeLeagueTheme(leagueName) {
+  const root = document.documentElement;
+  root.style.setProperty(
+    "--leagueTheme",
+    LeagueDetails.prototype.getHexColor(leagueName)
+  );
+  root.style.setProperty(
+    "--leagueThemeRGB",
+    LeagueDetails.prototype.getRGBColor(leagueName)
+  );
+  root.style.setProperty(
+    "--leagueAccent",
+    LeagueDetails.prototype.getAccentColor(leagueName)
+  );
 }
 
 export default Matches;
