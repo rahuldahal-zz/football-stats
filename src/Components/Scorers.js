@@ -64,7 +64,7 @@ const Scorers = ({ league }) => {
     return (
       <>
         <Header leagueName={leagueFullName} />
-        <Nav leagueName={league} selected="standings" />
+        <Nav leagueName={league} selected="scorers" />
         <section className="scorers">
           {scorers.map((scorer) => {
             const { name, nationality, position, dateOfBirth } = scorer.player;
