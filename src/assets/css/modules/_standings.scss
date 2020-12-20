@@ -121,6 +121,7 @@
 
     &__btn {
       cursor: pointer;
+      padding: 1rem;
       border-right: 2px solid var(--leagueTheme);
       border-radius: unset;
       background-color: var(--leagueThemeText);
@@ -134,7 +135,9 @@
       &:hover,
       &:focus {
         background-color: var(--leagueTheme);
+        color: var(--leagueThemeText);
         transform: translateY(0);
+        box-shadow: unset;
       }
 
       &:last-child {

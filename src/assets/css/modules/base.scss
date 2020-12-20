@@ -1,24 +1,8 @@
 @import "colors";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 :root {
   --headingFont: "Quicksand", sans-serif;
   --bodyFont: "Roboto", "sans-serif";
-}
-
-button {
-  border: 0;
-  outline: 0;
-  padding: 15px 20px;
-  font-family: inherit;
-  font-size: 1rem;
-  cursor: pointer;
-  box-sizing: border-box;
 }
 
 body {
