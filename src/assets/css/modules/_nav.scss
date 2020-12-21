@@ -54,6 +54,10 @@
       border-bottom-right-radius: 1rem;
       box-shadow: 0 9px 18px -10px rgba(0, 0, 0, 0.4);
 
+      @include for_768 {
+        font-size: 1rem;
+      }
+
       i {
         transition: transform 0.2s cubic-bezier(0.75, -0.5, 0, 1.75);
       }

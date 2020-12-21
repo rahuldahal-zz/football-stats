@@ -67,7 +67,7 @@ const Matches = ({ league }) => {
           setError(error);
         }
       );
-  }, [shortNames]);
+  }, [shortNames, matchDay]);
 
   useEffect(() => {
     if (shortNames.league !== leagueId) {
@@ -90,32 +90,64 @@ const Matches = ({ league }) => {
           <NavLinks leagueName={league} selected="matches" />
         </nav>
 
-        <main className="matches">
-          {matches.map((match) => {
-            let { homeTeam, awayTeam, utcDate, status, score } = match;
-            const date = new Date(utcDate);
-            homeTeam = shortNames.data.find((name) => name.id === homeTeam.id);
-            awayTeam = shortNames.data.find((name) => name.id === awayTeam.id);
+        <main className="matchesContainer">
+          <header className="matchday">
+            <h3 className="matchday__count">Matchday: {matchDay}</h3>
+            <button
+              className="matchday__picker"
+              onClick={() => {
+                setMatchDay(matchDay - 1);
+                setIsLoaded(false);
+              }}
+            >
+              <i
+                className="fas fa-arrow-left"
+                style={{ marginRight: "1rem", marginLeft: "0" }}
+              ></i>
+              Previous
+            </button>
+            <button
+              className="matchday__picker"
+              onClick={() => {
+                setMatchDay(matchDay + 1);
+                setIsLoaded(false);
+              }}
+            >
+              Next
+              <i className="fas fa-arrow-right"></i>
+            </button>
+          </header>
+          <section className="matches">
+            {matches.map((match) => {
+              let { homeTeam, awayTeam, utcDate, status, score } = match;
+              const date = new Date(utcDate);
+              homeTeam = shortNames.data.find(
+                (name) => name.id === homeTeam.id
+              );
+              awayTeam = shortNames.data.find(
+                (name) => name.id === awayTeam.id
+              );
 
-            return (
-              <div
-                key={match.id}
-                className="match"
-                role="button"
-                tabIndex="0"
-                onFocus={(e) => toggleCountdown(e)}
-                onBlur={(e) => toggleCountdown(e)}
-              >
-                <Team homeTeam={homeTeam} awayTeam={awayTeam} />
-                <Countdown
-                  utcDate={utcDate}
-                  status={status}
-                  fullTime={score.fullTime}
-                />
-                <small className="match__date">{date.toLocaleString()}</small>
-              </div>
-            );
-          })}
+              return (
+                <div
+                  key={match.id}
+                  className="match"
+                  role="button"
+                  tabIndex="0"
+                  onFocus={(e) => toggleCountdown(e)}
+                  onBlur={(e) => toggleCountdown(e)}
+                >
+                  <Team homeTeam={homeTeam} awayTeam={awayTeam} />
+                  <Countdown
+                    utcDate={utcDate}
+                    status={status}
+                    fullTime={score.fullTime}
+                  />
+                  <small className="match__date">{date.toLocaleString()}</small>
+                </div>
+              );
+            })}
+          </section>
         </main>
       </>
     );

@@ -8,15 +8,22 @@
   }
 }
 
-.matches {
+.matchesContainer {
   position: relative;
   z-index: 2;
+  margin-top: 15vh;
+  padding-bottom: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.matches {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin-top: 10vh;
-  padding-bottom: 10vh;
   min-height: 100%;
 
   .match {
@@ -119,6 +126,27 @@
 
     &__status {
       padding-left: 0.5rem;
+    }
+  }
+}
+
+.matchday {
+  width: 80vw;
+  padding-bottom: 1.5rem;
+  margin-bottom: 5vh;
+  border-bottom: 2px solid #f4f4f4;
+
+  &__count {
+    font-weight: bold;
+    color: #f4f4f4;
+  }
+
+  &__picker {
+    background-color: var(--leagueAccent);
+    color: var(--leagueTheme);
+
+    &:last-child {
+      margin-left: 1rem;
     }
   }
 }
