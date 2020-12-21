@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Nav from "./Nav";
+import NavLinks from "./NavLinks";
 import Header from "./Header";
 import LeagueDetails from "../utils/leagueDetails";
 import { fetchData } from "../utils/fetchData";
@@ -74,9 +74,11 @@ const Standings = ({ location, league }) => {
     }
     return (
       <>
-        <Header leagueName={leagueFullName} />
-        <Nav leagueName={league} selected="standings" />
-        <div className="standingsOutput">
+        <nav className="nav">
+          <Header leagueName={leagueFullName} />
+          <NavLinks leagueName={league} selected="standings" />
+        </nav>
+        <main className="standingsOutput">
           <table className="standingsOutput__table">
             <thead>
               <tr>
@@ -174,7 +176,7 @@ const Standings = ({ location, league }) => {
               </button>
             </div>
           </aside>
-        </div>
+        </main>
       </>
     );
   }

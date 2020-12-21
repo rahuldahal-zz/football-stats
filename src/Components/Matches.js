@@ -4,7 +4,7 @@ import { fetchData } from "../utils/fetchData";
 import LocalStorage from "../utils/localStorage";
 import dateDifference from "../utils/dateDifference";
 import { showLoader, hideLoader } from "../utils/preloader";
-import Nav from "./Nav";
+import NavLinks from "./NavLinks";
 import Header from "./Header";
 
 const leagueDetails = new LeagueDetails();
@@ -85,10 +85,12 @@ const Matches = ({ league }) => {
   } else {
     return (
       <>
-        <Header leagueName={leagueFullName} />
-        <Nav leagueName={league} selected="matches" />
+        <nav className="nav">
+          <Header leagueName={leagueFullName} />
+          <NavLinks leagueName={league} selected="matches" />
+        </nav>
 
-        <div className="matches">
+        <main className="matches">
           {matches.map((match) => {
             let { homeTeam, awayTeam, utcDate, status, score } = match;
             const date = new Date(utcDate);
@@ -114,7 +116,7 @@ const Matches = ({ league }) => {
               </div>
             );
           })}
-        </div>
+        </main>
       </>
     );
   }

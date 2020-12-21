@@ -1,13 +1,30 @@
-.header {
-  display: flex;
-  background-color: #333;
-  height: 7vh;
-  justify-content: space-between;
-  width: 100vw;
-  position: fixed;
-  z-index: 4;
-  top: 0;
-  box-shadow: 0 9px 18px -10px rgba(0, 0, 0, 0.4);
+.nav {
+  &__header {
+    display: flex;
+    background-color: #333;
+    height: 7vh;
+    justify-content: space-between;
+    width: 100vw;
+    position: fixed;
+    z-index: 4;
+    top: 0;
+    box-shadow: 0 9px 18px -10px rgba(0, 0, 0, 0.4);
+
+    .author {
+      color: var(--leagueAccent);
+      margin-top: 2vh;
+      margin-right: 30px;
+      font-size: 1rem;
+
+      @include for_768 {
+        margin-right: 20px;
+      }
+
+      a {
+        color: #eee;
+      }
+    }
+  }
 
   &__leagues {
     background: none;
@@ -22,7 +39,7 @@
       width: 160px;
     }
 
-    #selected {
+    .selected {
       position: relative;
       z-index: 5;
       height: 9vh;
@@ -30,6 +47,7 @@
       color: var(--leagueThemeText);
       text-align: center;
       font-weight: bold;
+      font-size: 1.1rem;
       padding-top: 20px;
       cursor: pointer;
       transition: transform 0.5s 0.5s cubic-bezier(0.75, -0.5, 0, 1.75);
@@ -81,50 +99,32 @@
     }
   }
 
-  #author {
-    color: #eee;
-    margin-top: 2vh;
-    margin-right: 30px;
-    font-size: 1rem;
+  &__links {
+    display: flex;
+    position: fixed;
+    z-index: 4;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 7vh;
+    justify-content: space-around;
 
     @include for_768 {
-      margin-right: 20px;
+      position: fixed;
+      top: 93vh;
+      left: 0;
+      transform: translateX(0);
+      width: 100%;
+      justify-content: space-around;
+      background-color: var(--leagueAccent);
+      box-shadow: 0 -6px 12px rgba(0, 0, 0, 0.4);
     }
-
-    a {
-      color: #eee;
-    }
-  }
-}
-
-.scaleY1 {
-  transform: scaleY(1) !important;
-}
-
-.nav {
-  display: flex;
-  position: fixed;
-  z-index: 4;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 7vh;
-  justify-content: space-around;
-
-  @include for_768 {
-    position: fixed;
-    top: 93vh;
-    left: 0;
-    transform: translateX(0);
-    width: 100%;
-    justify-content: space-around;
-    background-color: #333;
   }
 
   &__link {
-    color: #fff;
     transition: background-color 0.2s ease-in-out;
-    background-color: #333;
+    background-color: var(--leagueTheme);
+    color: var(--leagueAccent);
     width: 100%;
     padding: 0.5rem 1rem;
     font-size: 1rem;
@@ -140,9 +140,10 @@
     }
 
     &--active {
-      background-color: #fff;
+      background-color: #f4f4f4;
       border-top: 4px solid var(--leagueTheme);
       color: #333;
+      font-weight: bold;
       padding-top: 0.3rem;
 
       @include for_768 {
@@ -159,4 +160,8 @@
       color: #333;
     }
   }
+}
+
+.scaleY1 {
+  transform: scaleY(1) !important;
 }

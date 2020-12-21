@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Nav from "./Nav";
+import NavLinks from "./NavLinks";
 import Header from "./Header";
 import LeagueDetails from "../utils/leagueDetails";
 import { fetchData } from "../utils/fetchData";
@@ -63,9 +63,12 @@ const Scorers = ({ league }) => {
   } else {
     return (
       <>
-        <Header leagueName={leagueFullName} />
-        <Nav leagueName={league} selected="scorers" />
-        <section className="scorers">
+        <nav className="nav">
+          <Header leagueName={leagueFullName} />
+          <NavLinks leagueName={league} selected="scorers" />
+        </nav>
+
+        <main className="scorers">
           {scorers.map((scorer) => {
             const { name, nationality, position, dateOfBirth } = scorer.player;
             const team = shortNames.data.find(
@@ -98,7 +101,7 @@ const Scorers = ({ league }) => {
               </div>
             );
           })}
-        </section>
+        </main>
       </>
     );
   }

@@ -3,9 +3,9 @@ import React from "react";
 
 const Header = ({ leagueName }) => {
   return (
-    <header className="header">
+    <header className="nav__header">
       <div
-        className="header__leagues"
+        className="nav__leagues"
         role="button"
         tabIndex="0"
         onFocus={(e) => {
@@ -13,7 +13,7 @@ const Header = ({ leagueName }) => {
             e.target.children[1].classList.toggle("dropdown--active");
         }}
       >
-        <div id="selected">
+        <div className="selected">
           <span>{leagueName}</span>
           <i className="fas fa-caret-down"></i>
         </div>
@@ -35,7 +35,7 @@ const Header = ({ leagueName }) => {
           </Link>
         </div>
       </div>
-      <span id="author">
+      <span className="author">
         by{" "}
         <a href="https://rahuldahal.com.np" target="_blank" rel="noreferrer">
           Rahul Dahal

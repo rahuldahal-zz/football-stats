@@ -5,7 +5,7 @@ const Nav = ({ currentSeason, leagueName, selected }) => {
   const leagueTrimmed = leagueName.toLowerCase().replace(" ", "");
 
   return (
-    <nav className="nav">
+    <section className="nav__links">
       <Link
         to={`/${leagueTrimmed}/matches`}
         state={{ currentSeason }}
@@ -42,7 +42,7 @@ const Nav = ({ currentSeason, leagueName, selected }) => {
       >
         Standings
       </Link>
-    </nav>
+    </section>
   );
 };
 
