@@ -195,6 +195,10 @@ const Standings = ({ location, league }) => {
       "--leagueAccent",
       LeagueDetails.prototype.getAccentColor(leagueName)
     );
+    root.style.setProperty(
+      "--leagueText",
+      LeagueDetails.prototype.getTextColor(leagueName)
+    );
   }
 
   function standingsTypeHandler(e) {

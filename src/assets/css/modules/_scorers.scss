@@ -50,7 +50,7 @@
     justify-content: space-between;
     gap: 0.5rem;
     background-color: var(--leagueTheme);
-    color: var(--leagueThemeText);
+    color: var(--leagueText);
     padding: 0.5rem 1.25rem;
     padding-bottom: 1.25rem;
     border-radius: 0.5rem;
@@ -83,7 +83,7 @@
     padding: 1rem;
     border-top-right-radius: 0.5rem;
     background-color: var(--leagueTheme);
-    color: var(--leagueThemeText);
+    color: var(--leagueText);
     box-shadow: 6px 0px 12px rgba(0, 0, 0, 0.2);
   }
 }

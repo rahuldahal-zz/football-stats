@@ -61,6 +61,7 @@ const Scorers = ({ league }) => {
     showLoader();
     return null;
   } else {
+    console.log(scorers);
     return (
       <>
         <nav className="nav">
@@ -120,6 +121,10 @@ function changeLeagueTheme(leagueName) {
   root.style.setProperty(
     "--leagueAccent",
     LeagueDetails.prototype.getAccentColor(leagueName)
+  );
+  root.style.setProperty(
+    "--leagueText",
+    LeagueDetails.prototype.getTextColor(leagueName)
   );
 }
 

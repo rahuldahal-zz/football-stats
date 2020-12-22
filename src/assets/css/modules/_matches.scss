@@ -90,6 +90,7 @@
       padding: 1em 1.25em;
       border-radius: 0.5rem;
       background-color: var(--leagueAccent);
+      color: var(--leagueText);
       transition: opacity 0.3s ease-in-out;
       box-shadow: -6px -6px 12px rgba(0, 0, 0, 0.1);
 
@@ -143,7 +144,7 @@
 
   &__picker {
     background-color: var(--leagueAccent);
-    color: var(--leagueTheme);
+    color: var(--leagueText);
 
     &:last-child {
       margin-left: 1rem;

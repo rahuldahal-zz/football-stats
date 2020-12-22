@@ -91,7 +91,7 @@
 
   td {
     &:last-child {
-      color: var(--leagueThemeText);
+      color: var(--leagueText);
     }
 
     &:nth-child(2) {
@@ -124,7 +124,7 @@
       padding: 1rem;
       border-right: 2px solid var(--leagueTheme);
       border-radius: unset;
-      background-color: var(--leagueThemeText);
+      background-color: var(--leagueText);
       color: var(--leagueTheme);
       transition: background-color 0.2s ease;
 
@@ -135,7 +135,7 @@
       &:hover,
       &:focus {
         background-color: var(--leagueTheme);
-        color: var(--leagueThemeText);
+        color: var(--leagueText);
         transform: translateY(0);
         box-shadow: unset;
       }
@@ -151,7 +151,7 @@
 
       &--active {
         background-color: var(--leagueTheme);
-        color: var(--leagueThemeText);
+        color: var(--leagueText);
       }
     }
   }

@@ -11,7 +11,7 @@
     box-shadow: 0 9px 18px -10px rgba(0, 0, 0, 0.4);
 
     .author {
-      color: var(--leagueAccent);
+      color: #f4f4f4;
       margin-top: 2vh;
       margin-right: 30px;
       font-size: 1rem;
@@ -44,7 +44,7 @@
       z-index: 5;
       height: 9vh;
       background-color: var(--leagueTheme);
-      color: var(--leagueThemeText);
+      color: #f4f4f4;
       text-align: center;
       font-weight: bold;
       font-size: 1.1rem;
@@ -128,7 +128,7 @@
   &__link {
     transition: background-color 0.2s ease-in-out;
     background-color: var(--leagueTheme);
-    color: var(--leagueAccent);
+    color: #f4f4f4;
     width: 100%;
     padding: 0.5rem 1rem;
     font-size: 1rem;
