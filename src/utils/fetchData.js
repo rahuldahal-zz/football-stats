@@ -61,8 +61,15 @@ export function fetchData(dataToBeFetched, id, params) {
       method: "GET",
       headers: myHeaders,
     })
-      .then((response) => response.json())
-      .then((data) => resolve(data))
+      .then((response) => {
+        caches.open("dist").then((cache) => {
+          cache.put(url, response.clone());
+        });
+        return response.clone().json();
+      })
+      .then((data) => {
+        resolve(data);
+      })
       .catch((error) => reject(error));
   });
 }

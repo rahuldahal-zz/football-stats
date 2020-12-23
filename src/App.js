@@ -33,4 +33,13 @@ const App = function () {
   );
 };
 
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("./serviceWorker.js")
+      .then((reg) => console.log("register", reg.scope))
+      .catch((err) => console.log(err));
+  });
+}
+
 ReactDOM.render(<App />, document.getElementById("root"));
