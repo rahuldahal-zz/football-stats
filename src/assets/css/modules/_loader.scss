@@ -4,8 +4,8 @@
   height: 100vh;
   top: 0;
   z-index: 5;
-  background-color: #001925;
-  color: #fff;
+  background-color: #027733;
+  color: #f4e6f4;
 
   &__wrap {
     text-align: center;
@@ -17,10 +17,6 @@
 
   &__image {
     width: auto;
-    height: 100px;
-    background-color: #fff;
-    border-radius: 1rem;
-    padding: 10px 20px;
     animation: loading 0.3s ease-in-out alternate infinite;
   }
 
