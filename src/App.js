@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
-import { Router } from "@reach/router";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 import Landing from "./Components/Landing";
 import Matches from "./Components/Matches";
 import Loader from "./Components/Loader";
@@ -22,11 +22,11 @@ const App = function () {
   return (
     <>
       <Router>
-        <Landing path="/" />
-        <Matches path="/:league/matches" />
-        <Standings path="/:league/standings" />
-        <Scorers path="/:league/scorers" />
-        <Teams path="/:league/teams" />
+        <Route path="/" exact component={Landing} />
+        <Route path="/:league/matches" component={Matches} />
+        <Route path="/:league/standings" component={Standings} />
+        <Route path="/:league/scorers" component={Scorers} />
+        <Route path="/:league/teams" component={Teams} />
       </Router>
       <Loader />
     </>

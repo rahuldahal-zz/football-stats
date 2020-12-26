@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import LeagueDetails from "../utils/leagueDetails";
 import { fetchData } from "../utils/fetchData";
 import LocalStorage from "../utils/localStorage";
@@ -25,7 +26,8 @@ function Countdown({ utcDate, status, fullTime }) {
   );
 }
 
-const Matches = ({ league }) => {
+const Matches = () => {
+  const { league } = useParams();
   const leagueId = leagueDetails.getId(league);
   const leagueFullName = leagueDetails.getFullName(league);
   const [error, setError] = useState(null);

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import NavLinks from "./NavLinks";
 import Header from "./Header";
 import LeagueDetails from "../utils/leagueDetails";
@@ -8,7 +9,8 @@ import { showLoader, hideLoader } from "../utils/preloader";
 
 const leagueDetails = new LeagueDetails();
 
-const Scorers = ({ league }) => {
+const Scorers = () => {
+  const { league } = useParams();
   const leagueId = leagueDetails.getId(league);
   const leagueFullName = leagueDetails.getFullName(league);
   const [error, setError] = useState(null);
