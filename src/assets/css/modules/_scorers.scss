@@ -70,6 +70,7 @@
     bottom: -1rem;
     margin: 0;
     background-color: var(--leagueAccent);
+    color: var(--leagueText);
     padding: 1rem 1.25rem;
     border-radius: 0.5rem;
     border-top-right-radius: 0;
@@ -83,7 +84,8 @@
     padding: 1rem;
     border-top-right-radius: 0.5rem;
     background-color: var(--leagueTheme);
-    color: var(--leagueText);
+    color: #f4f4f4;
+    font-weight: bold;
     box-shadow: 6px 0px 12px rgba(0, 0, 0, 0.2);
   }
 }
