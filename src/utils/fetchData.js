@@ -1,14 +1,3 @@
-const offlineEndpoints = (id) => {
-  return {
-    leagueDetails: `/backupData/${id}.json`,
-    standings: `/backupData/${id}Standings.json`,
-    teams: `/backupData/${id}Teams.json`,
-    scorers: `/backupData/${id}Scorers.json`,
-    particularTeam: `/backupData/athletiMadrid.json`,
-    matches: `/backupData/${id}UpcomingMatches.json`,
-  };
-};
-
 const onlineEndpoints = (id, params) => {
   return {
     leagueDetails: `https://api.football-data.org/v2/competitions/${id}`,
@@ -22,10 +11,14 @@ const onlineEndpoints = (id, params) => {
 
 export function fetchData(dataToBeFetched, id, params) {
   params = new URLSearchParams(params).toString();
-  const { leagueDetails, standings, teams, particularTeam, matches, scorers } =
-    process.env.NODE_ENV === "development"
-      ? offlineEndpoints(id)
-      : onlineEndpoints(id, params);
+  const {
+    leagueDetails,
+    standings,
+    teams,
+    particularTeam,
+    matches,
+    scorers,
+  } = onlineEndpoints(id, params);
 
   return new Promise((resolve, reject) => {
     let url;
