@@ -33,9 +33,6 @@
     @include for_768 {
       font-size: 3rem;
     }
-    @media only screen and (max-height: 650px) {
-      font-size: 2rem;
-    }
   }
 
   .clickable {

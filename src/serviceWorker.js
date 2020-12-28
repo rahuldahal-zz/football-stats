@@ -49,14 +49,32 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
+  const { request } = event;
+  const urlRegex = [/:\/\/crests/];
   event.respondWith(
     caches
-      .match(event.request)
+      .match(request)
       .then(function (response) {
         if (response) {
-          console.log("returning from cache " + event.request.url);
+          console.log("returning from cache " + request.url);
           return response;
         }
+        if (urlRegex.some((regex) => regex.test(request.url))) {
+          console.log("about to fetch and cache");
+          caches
+            .open("api")
+            .then((cache) => {
+              return fetch(request)
+                .then((response) => {
+                  console.log("fetching and caching " + request.url);
+                  cache.put(request, response.clone());
+                  return response;
+                })
+                .catch((err) => console.log(err));
+            })
+            .catch((err) => console.log(err));
+        }
+
         console.log("actually fetching... " + event.request.url);
         return fetch(event.request);
       })

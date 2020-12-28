@@ -7,6 +7,7 @@ import dateDifference from "../utils/dateDifference";
 import { showLoader, hideLoader } from "../utils/preloader";
 import NavLinks from "./NavLinks";
 import Header from "./Header";
+import TeamInfo from "./TeamInfo";
 
 const leagueDetails = new LeagueDetails();
 
@@ -35,6 +36,7 @@ const Matches = () => {
   const [matches, setMatches] = useState([]);
   const [matchDay, setMatchDay] = useState(null);
   const [shortNames, setShortNames] = useState({});
+  const [selectedTeam, setSelectedTeam] = useState(null);
 
   useEffect(() => {
     setMatchDay(null);
@@ -137,8 +139,6 @@ const Matches = () => {
                   className="match"
                   role="button"
                   tabIndex="0"
-                  onFocus={(e) => toggleCountdown(e)}
-                  onBlur={(e) => toggleCountdown(e)}
                 >
                   <Team homeTeam={homeTeam} awayTeam={awayTeam} />
                   <Countdown
@@ -152,36 +152,53 @@ const Matches = () => {
             })}
           </section>
         </main>
+        {selectedTeam ? (
+          <TeamInfo shortNames={shortNames} teamId={selectedTeam} />
+        ) : (
+          <TeamInfo />
+        )}
       </>
     );
   }
-};
 
-function Team({ homeTeam, awayTeam }) {
-  return (
-    <div className="team">
-      <div className="team__home">
-        <img
-          src={homeTeam.crestUrl}
-          alt={`${homeTeam.shortName} logo`}
-          onLoad={(e) => e.target.classList.add("team__logo--loaded")}
-          className="team__logo"
-        />
-        <h3 className="team__name">{homeTeam.shortName}</h3>
+  function Team({ homeTeam, awayTeam }) {
+    return (
+      <div className="team">
+        <div
+          className="team__home"
+          role="button"
+          tabIndex="0"
+          onClick={() => setSelectedTeam(homeTeam.id)}
+          onKeyUp={() => setSelectedTeam(homeTeam.id)}
+        >
+          <img
+            src={homeTeam.crestUrl}
+            alt={`${homeTeam.shortName} logo`}
+            onLoad={(e) => e.target.classList.add("team__logo--loaded")}
+            className="team__logo"
+          />
+          <h3 className="team__name">{homeTeam.shortName}</h3>
+        </div>
+        <strong>v/s</strong>
+        <div
+          className="awayTeam"
+          role="button"
+          tabIndex="0"
+          onClick={() => setSelectedTeam(awayTeam.id)}
+          onKeyUp={() => setSelectedTeam(awayTeam.id)}
+        >
+          <img
+            src={awayTeam.crestUrl}
+            alt={`${awayTeam.shortName} logo`}
+            onLoad={(e) => e.target.classList.add("team__logo--loaded")}
+            className="team__logo"
+          />
+          <h3 className="team__name">{awayTeam.shortName}</h3>
+        </div>
       </div>
-      <strong>v/s</strong>
-      <div className="awayTeam">
-        <img
-          src={awayTeam.crestUrl}
-          alt={`${awayTeam.shortName} logo`}
-          onLoad={(e) => e.target.classList.add("team__logo--loaded")}
-          className="team__logo"
-        />
-        <h3 className="team__name">{awayTeam.shortName}</h3>
-      </div>
-    </div>
-  );
-}
+    );
+  }
+};
 
 function toggleCountdown(e) {
   e.currentTarget.classList.toggle("match--active");
