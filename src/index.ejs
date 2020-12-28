@@ -24,7 +24,9 @@
     <h3>This app requires JavaScript to function.</h3>
     <a href="https://www.enable-javascript.com/">Read More</a>
   </noscript>
-  
+  <% for (let css in htmlWebpackPlugin.files.css) { %>
+    <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
+    <% } %>
 </head>
 
 <body>
@@ -40,9 +42,9 @@
     }
   </script>
 
-  
-    <script src="http://localhost:5000/main.js"></script>
-    
-<script src="/main.js"></script></body>
+  <% if (htmlWebpackPlugin.options.devServer) { %>
+    <script src="<%= htmlWebpackPlugin.options.devServer%>/main.js"></script>
+    <% } %>
+</body>
 
 </html>

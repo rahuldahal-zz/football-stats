@@ -1,5 +1,5 @@
 [dev]
-	publish="dist"
+	publish="src"
 [build]
     publish="build"
 [[redirects]]

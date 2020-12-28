@@ -1,9 +1,20 @@
-const cacheName = "dist";
+const cacheName = "site-static";
+const staticAssets = [
+  "/",
+  "App.css",
+  "App.js",
+  "juggle-72x72.png",
+  "background.webp",
+  "background_mobile.webp",
+];
 
 // handle "caching" here
 self.addEventListener("install", (event) => {
   console.log("installed");
-  self.skipWaiting(); // makes the new service-worker take effect immediately
+  event.waitUntil(
+    caches.open("dist").then((cache) => cache.addAll(staticAssets))
+  );
+  // self.skipWaiting(); // makes the new service-worker take effect immediately
 });
 
 // clean up old cache

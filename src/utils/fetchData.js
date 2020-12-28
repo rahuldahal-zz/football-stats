@@ -62,7 +62,7 @@ export function fetchData(dataToBeFetched, id, params) {
       headers: myHeaders,
     })
       .then((response) => {
-        caches.open("dist").then((cache) => {
+        caches.open("api").then((cache) => {
           cache.put(url, response.clone());
         });
         return response.clone().json();

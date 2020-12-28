@@ -5,7 +5,7 @@ const Loader = () => {
     <div className="loader">
       <div className="loader__wrap">
         <img
-          src={require("/assets/images/juggle-128x128.png")}
+          src="/assets/images/juggle-128x128.png"
           alt=""
           className="loader__image"
         />
