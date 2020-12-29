@@ -43,4 +43,10 @@ body {
   i {
     margin-left: 1rem;
   }
+
+  h1 {
+    @include for_768 {
+      font-size: 2.3rem;
+    }
+  }
 }

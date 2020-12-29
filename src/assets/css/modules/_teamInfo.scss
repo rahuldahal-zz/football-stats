@@ -1,4 +1,4 @@
-#teamInfoCard {
+.teamInfo {
   position: fixed;
   z-index: 5;
   top: 0;
@@ -12,10 +12,10 @@
   overflow-x: hidden;
   overflow-y: scroll;
 
-  button {
-    display: inline-block;
+  &__collapse {
     position: sticky;
     top: 0;
+    left: 0;
     z-index: 2;
     border: 0;
     outline: 0;
@@ -23,23 +23,33 @@
     font-family: inherit;
     font-size: 1rem;
     cursor: pointer;
-    box-sizing: border-box;
     background-color: #00ff85;
     color: #333;
+    border-radius: 0;
+    border-bottom-right-radius: 0.5rem;
     box-shadow: 0px 4px 8px -5px rgba(0, 0, 0, 0.4);
+
+    &:hover,
+    &:focus {
+      transform: translateX(0);
+    }
+
+    i {
+      margin: 0;
+    }
   }
 
-  #coverPhoto {
+  &__cover {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 300px;
-    background: url(../images/background.webp);
+    background: url(https://vanilla.footballstats.tk/assets/images/background.webp);
     background-size: cover;
     box-shadow: 0px -9px 18px -10px inset rgba(0, 0, 0, 0.6);
   }
-  #logoWrapper {
+  &__logo {
     position: absolute;
     top: 200px;
     left: 50%;
@@ -49,15 +59,18 @@
     background-color: #fff;
     background-size: cover;
     border-radius: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: 50%;
     filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.4));
   }
 
   h4 {
     margin-bottom: 5px;
-    color: var(--brand);
+    color: var(--leagueTheme);
   }
 
-  #clubName {
+  &__name {
     position: absolute;
     top: 420px;
     left: 50%;
@@ -71,7 +84,7 @@
     }
   }
 
-  #wrap {
+  .details {
     position: absolute;
     top: 480px;
     left: 50%;
@@ -80,8 +93,8 @@
     max-width: 1366px;
   }
 
-  #general,
-  #squad {
+  .general,
+  .teamSquad {
     width: 100%;
     padding: 40px;
 
@@ -91,8 +104,10 @@
     h2 {
       width: max-content;
       padding: 10px 20px;
-      background-color: var(--brand);
-      color: #fff;
+      background-color: var(--leagueTheme);
+      color: var(--leagueText);
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
       position: relative;
 
       &::after {
@@ -103,18 +118,18 @@
         height: 2px;
         width: calc(1366px - 80px);
         display: block;
-        background-color: #333;
+        background-color: var(--leagueTheme);
       }
     }
   }
 
-  #general {
+  .general {
     .fas,
     .fab {
       margin-right: 5px;
     }
 
-    #generalContent {
+    &__content {
       display: grid;
       grid-template-columns: 400px auto;
 
@@ -122,95 +137,37 @@
         grid-template-columns: 100%;
       }
       grid-gap: 30px;
+    }
 
-      #info {
-        margin-top: 40px;
-        padding: 10px;
-        background-color: #eee;
-        border-left: 2px solid var(--brand);
+    &__info {
+      margin-top: 40px;
+      padding: 10px;
+      background-color: #eee;
+      border-left: 2px solid var(--leagueTheme);
 
-        @include for_600 {
-          padding: 0;
-        }
-
-        em,
-        p {
-          margin-left: 10px;
-        }
+      @include for_600 {
+        padding: 0;
       }
 
-      #matches {
-        margin-top: 50px;
-        display: grid;
-        grid-template-rows: repeat(3, 1fr);
-        align-items: center;
-        grid-gap: 30px;
-
-        & > div {
-          position: relative;
-          background-color: #eee;
-          padding: 10px;
-          padding-top: 25px;
-          height: max-content;
-          border-bottom: 2px solid var(--brand);
-
-          h5 {
-            position: absolute;
-            top: -1rem;
-            font-weight: 400;
-            left: 0;
-            padding: 5px 15px;
-            background-color: var(--brand);
-            color: #fff;
-            border-top-left-radius: 1em;
-            border-top-right-radius: 1em;
-          }
-
-          .home,
-          .away,
-          h3,
-          p {
-            display: inline-block;
-          }
-          h3 {
-            font-weight: 400;
-            font-size: 1.6rem;
-
-            @include for_600 {
-              font-size: 1.1rem;
-            }
-          }
-          .score {
-            margin: 0 auto;
-            text-align: center;
-          }
-          p {
-            padding: 10px;
-            background-color: #333;
-            color: #fff;
-            margin: 0 10px;
-
-            @include for_480 {
-              padding: 5px;
-              margin: 0 5px;
-            }
-          }
-        }
+      h4 {
+        font-weight: bold;
+        margin-top: 0;
       }
-      #nHname,
-      #nAname {
-        margin: 0 10px;
+
+      em,
+      p {
+        margin-left: 10px;
       }
     }
 
-    #country,
-    #activeCompetitions,
-    #contact,
-    #stadium {
+    &__country,
+    &__activeCompetitions,
+    &__contact,
+    &__stadium {
       padding: 10px;
     }
 
-    #activeCompetitions {
+    &__activeCompetitions {
       width: max-content;
 
       em {
@@ -220,7 +177,7 @@
       }
     }
 
-    #contact {
+    &__contact {
       address,
       a {
         margin: 10px;
@@ -236,54 +193,120 @@
         color: #333;
       }
     }
+
+    &__form {
+      margin-top: 50px;
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      align-items: center;
+      grid-gap: 30px;
+
+      .match {
+        position: relative;
+        background-color: var(--leagueText);
+        padding: 10px;
+        padding-top: 25px;
+        height: max-content;
+        border-bottom: 2px solid var(--leagueTheme);
+
+        h5 {
+          position: absolute;
+          top: -2rem;
+          font-weight: 400;
+          left: 0;
+          padding: 5px 15px;
+          background-color: var(--leagueTheme);
+          color: var(--leagueText);
+          border-top-left-radius: 1em;
+          border-top-right-radius: 1em;
+        }
+        &__score,
+        &__home,
+        &__away {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        &__goals {
+          font-weight: 400;
+          font-size: 1.6rem;
+
+          @include for_600 {
+            font-size: 1.1rem;
+          }
+        }
+
+        em {
+          padding: 10px;
+          background-color: #333;
+          color: #fff;
+          margin: 0 10px;
+
+          @include for_480 {
+            padding: 5px;
+            margin: 0 5px;
+          }
+        }
+      }
+    }
   }
 
-  #squad {
+  .teamSquad {
     h3 {
-      color: var(--brand);
+      color: var(--leagueTheme);
       margin-bottom: 10px;
+      font-weight: bold;
+
+      &::first-letter {
+        text-transform: uppercase;
+      }
     }
-    h4 {
-      color: #333;
-      margin: 0;
-    }
-    #manager {
+
+    .manager {
       margin: 20px 0;
       position: relative;
       width: max-content;
     }
-    small {
-      position: absolute;
-      top: -1rem;
-      font-size: 0.6rem;
-      padding: 5px;
-      background-color: var(--black);
-      color: #fff;
-      right: 0;
-    }
     .players {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      grid-gap: 20px;
+      grid-gap: 40px;
       padding: 20px;
-      border-bottom: 1px solid var(--brand);
+      border-bottom: 1px solid var(--leagueTheme);
       margin-bottom: 20px;
 
       .player {
-        background-color: var(--lightWhite);
+        background-color: var(--leagueTheme);
+        color: var(--leagueText);
         padding: 10px 15px;
         padding-top: 20px;
         position: relative;
+        border-radius: 0.5rem;
 
-        small {
-          font-style: italic;
+        &__name {
+          color: var(--leagueText);
+          margin: 0;
+          font-weight: bold;
+        }
+
+        &__age {
+          position: absolute;
+          top: -1rem;
+          font-size: 0.6rem;
+          padding: 5px;
+          background-color: var(--leagueAccent);
+          color: var(--leagueText);
+          right: 0;
+          border-top-left-radius: 0.5rem;
+          border-top-right-radius: 0.5rem;
         }
       }
     }
   }
 }
 
-.teamInfo_active {
+.teamInfo--active {
   opacity: 1 !important;
   transform: translateY(0) !important;
 }

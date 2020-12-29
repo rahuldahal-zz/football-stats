@@ -5,8 +5,8 @@ const leagueIdAndNameMap = {
     id: 2002,
     fullName: "Bundesliga",
     hexColor: "#d20515",
-    accentColor: "#ffffff",
-    textColor: "#333333",
+    accentColor: "#3e0202",
+    textColor: "#f4f4f4",
     rgbColor: "210, 5, 21",
   },
   laliga: {

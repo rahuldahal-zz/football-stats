@@ -24,7 +24,9 @@ const TeamInfo = ({ shortNames, teamId }) => {
 
   return (
     <>
-      <section className="teamInfo">{teamInfo ? <Team /> : null}</section>
+      <section className={teamInfo ? "teamInfo teamInfo--active" : "teamInfo"}>
+        {teamInfo ? <Team /> : null}
+      </section>
     </>
   );
 
@@ -96,36 +98,40 @@ const TeamInfo = ({ shortNames, teamId }) => {
           <i className="fas fa-arrow-left"></i>
         </button>
         <div className="teamInfo__cover"></div>
-        <div className="teamInfo__logo">
-          <img src={crestUrl} alt={`${shortName} logo`} />
-        </div>
-        <div className="teamInfo__name">{name}</div>
-        <div className="info">
+        <div
+          className="teamInfo__logo"
+          style={{ backgroundImage: `url(${crestUrl})` }}
+        ></div>
+        <h1 className="teamInfo__name">{name}</h1>
+        <div className="details">
           <div className="general">
             <h2>General Info.</h2>
-            <div id="info__general">
-              <div id="info">
-                <div id="country">{area.name}</div>
-                <div id="activeCompetitions">
+            <div className="general__content">
+              <div className="general__info">
+                <div className="general__country">
+                  <h4>Country</h4>
+                  <em>{area.name}</em>
+                </div>
+                <div className="general__activeCompetitions">
                   <h4>Active Competitions</h4>
                   {activeCompetitions.map((competition) => {
                     return <em key={competition.id}>{competition.name}</em>;
                   })}
                 </div>
-                <div id="stadium">
+                <div className="general__stadium">
                   <h4>Stadium</h4>
-                  <p id="stadiumName">{venue}</p>
+                  <em>{venue}</em>
                 </div>
-                <div id="contact">
+                <div className="general__contact">
                   <h4>Contact</h4>
-                  <address id="address">{address}</address>
-                  <a href={`mailto:${email}`} id="email">
+                  <address>{address}</address>
+                  <a href={`mailto:${email}`} className="general__email">
                     <i className="fas fa-at"></i>
                     {email}
                   </a>
                   <a
                     href={website}
-                    id="website"
+                    className="general__website"
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -134,52 +140,64 @@ const TeamInfo = ({ shortNames, teamId }) => {
                   </a>
                 </div>
               </div>
-              <div id="matches">
-                <div id="previousMatch">
-                  <h5>Previous Match</h5>
-                  <div className="score">
-                    <div className="home">
-                      <h3 id="previousHomeName">fetching...</h3>
-                      <p id="previousHomeGoal"></p>
+              <div className="general__form">
+                <div className="match">
+                  <h5>Penultimate Match</h5>
+                  <div className="match__score">
+                    <div className="match__home">
+                      <h3 className="match__name">fetching...</h3>
+                      <em className="match__goals"></em>
                     </div>
-                    <div className="away">
-                      <p id="previousAwayGoal"></p>
-                      <h3 id="previousAwayName">fetching...</h3>
+                    <div className="match__away">
+                      <em className="match__goals"></em>
+                      <h3 className="match__name">fetching...</h3>
                     </div>
                   </div>
                 </div>
-                <div id="lastMatch">
+
+                <div className="match">
                   <h5>Last Match</h5>
-                  <div className="score">
-                    <div className="home">
-                      <h3 id="lastHomeName">fetching...</h3>
-                      <p id="lastHomeGoal"></p>
+                  <div className="match__score">
+                    <div className="match__home">
+                      <h3 className="match__name">fetching...</h3>
+                      <em className="match__goals"></em>
                     </div>
-                    <div className="away">
-                      <p id="lastAwayGoal"></p>
-                      <h3 id="lastAwayName">fetching...</h3>
+                    <div className="match__away">
+                      <em className="match__goals"></em>
+                      <h3 className="match__name">fetching...</h3>
                     </div>
                   </div>
                 </div>
-                <div id="nextMatch">
+
+                <div className="match">
                   <h5>Next Match</h5>
-                  <div className="score">
-                    <div className="home">
-                      <h3 id="nextHomeName">fetching...</h3>
+                  <div className="match__score">
+                    <div className="match__home">
+                      <h3 className="match__name">fetching...</h3>
                     </div>
                     <em>v/s</em>
-                    <div className="away">
-                      <h3 id="nextAwayName">fetching...</h3>
+                    <div className="match__away">
+                      <h3 className="match__name">fetching...</h3>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div id="squad">
+
+          <div className="teamSquad">
             <h2>Squad</h2>
-            <div id="manager">
+            <div className="manager">
               <h3>Manager</h3>
+              <div className="player">
+                <h4 className="player__name">{coach.name}</h4>
+                <em className="player__nationality">{coach.nationality}</em>
+                <small className="player__age">
+                  {new Date().getFullYear() -
+                    new Date(coach.dateOfBirth).getFullYear()}{" "}
+                  yrs
+                </small>
+              </div>
             </div>
             <div className="squad">
               {squad.map((s) => {
@@ -198,7 +216,9 @@ const TeamInfo = ({ shortNames, teamId }) => {
                               {player.nationality}
                             </em>
                             <small className="player__age">
-                              {player.dateOfBirth}
+                              {new Date().getFullYear() -
+                                new Date(player.dateOfBirth).getFullYear()}{" "}
+                              yrs
                             </small>
                           </div>
                         );
