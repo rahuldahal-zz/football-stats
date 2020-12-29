@@ -15,7 +15,7 @@ const Landing = () => {
         <LeagueCard leagueName="la liga" />
         <LeagueCard leagueName="serie a" />
         <LeagueCard leagueName="bundesliga" />
-        <LeagueCard leagueName="ligue one" />
+        <LeagueCard leagueName="ligue un" />
       </section>
     </main>
   );

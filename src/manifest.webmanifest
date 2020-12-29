@@ -8,42 +8,42 @@
     "orientation": "portrait-primary",
     "icons": [
         {
-            "src": "/assets/images/juggle-72x72.png",
+            "src": "https://res.cloudinary.com/rdaahal/image/upload/v1609246223/FootballStats/Icons/juggle-72x72_vcok59.png",
             "type": "image/png",
             "sizes": "72x72"
         },
         {
-            "src": "/assets/images/juggle-96x96.png",
+            "src": "https://res.cloudinary.com/rdaahal/image/upload/v1609246223/FootballStats/Icons/juggle-96x96_ueyfhp.png",
             "type": "image/png",
             "sizes": "96x96"
         },
         {
-            "src": "/assets/images/juggle-128x128.png",
+            "src": "https://res.cloudinary.com/rdaahal/image/upload/v1609246224/FootballStats/Icons/juggle-128x128_qvntqj.png",
             "type": "image/png",
             "sizes": "128x128"
         },
         {
-            "src": "/assets/images/juggle-144x144.png",
+            "src": "https://res.cloudinary.com/rdaahal/image/upload/v1609246224/FootballStats/Icons/juggle-144x144_dwpb3x.png",
             "type": "image/png",
             "sizes": "144x144"
         },
         {
-            "src": "/assets/images/juggle-152x152.png",
+            "src": "https://res.cloudinary.com/rdaahal/image/upload/v1609246224/FootballStats/Icons/juggle-152x152_j1c8rz.png",
             "type": "image/png",
             "sizes": "152x152"
         },
         {
-            "src": "/assets/images/juggle-192x192.png",
+            "src": "https://res.cloudinary.com/rdaahal/image/upload/v1609246224/FootballStats/Icons/juggle-192x192_jbowkw.png",
             "type": "image/png",
             "sizes": "192x192"
         },
         {
-            "src": "/assets/images/juggle-384x384.png",
+            "src": "https://res.cloudinary.com/rdaahal/image/upload/v1609246225/FootballStats/Icons/juggle-384x384_uwey0l.png",
             "type": "image/png",
             "sizes": "384x384"
         },
         {
-            "src": "/assets/images/juggle-512x512.png",
+            "src": "https://res.cloudinary.com/rdaahal/image/upload/v1609246225/FootballStats/Icons/juggle-512x512_d9enn1.png",
             "type": "image/png",
             "sizes": "512x512"
         }

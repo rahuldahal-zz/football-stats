@@ -10,7 +10,7 @@ const LeagueCard = ({ leagueName }) => {
       title={leagueName}
     >
       <img
-        src={`https://vanilla.footballstats.tk/assets/images/${leagueTrimmed}.png`}
+        src={`https://res.cloudinary.com/rdaahal/image/upload/v1609243719/FootballStats/Leagues/${leagueTrimmed}.png`}
         alt={`${leagueName} logo`}
         className="leagues__image"
       />

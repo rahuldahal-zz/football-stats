@@ -6,14 +6,14 @@
 }
 
 body {
-  background-image: url("/assets/images/background.webp");
+  background-image: url("https://res.cloudinary.com/rdaahal/image/upload/v1609243801/FootballStats/background_egtbrw.webp");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed !important;
   overflow-x: hidden;
 
   @include for_768 {
-    background-image: url("/assets/images/background_mobile.webp");
+    background-image: url("https://res.cloudinary.com/rdaahal/image/upload/v1609243890/FootballStats/background_mobile_hlw9ao.webp");
     background-repeat: no-repeat;
   }
 

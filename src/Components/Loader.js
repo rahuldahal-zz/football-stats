@@ -5,7 +5,7 @@ const Loader = () => {
     <div className="loader">
       <div className="loader__wrap">
         <img
-          src="/assets/images/juggle-96x96.png"
+          src="https://res.cloudinary.com/rdaahal/image/upload/v1609246223/FootballStats/Icons/juggle-96x96_ueyfhp.png"
           alt=""
           className="loader__image"
         />
