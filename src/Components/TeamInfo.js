@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { fetchData } from "../utils/fetchData";
 
-const TeamInfo = ({ shortNames, teamId }) => {
+const TeamInfo = ({ teamId, setSelectedTeam }) => {
   const [error, setError] = useState(null);
   const [teamInfo, setTeamInfo] = useState(null);
 
@@ -54,6 +54,9 @@ const TeamInfo = ({ shortNames, teamId }) => {
     let coach;
 
     squad.forEach((player) => {
+      if (player.role === "COACH") {
+        coach = player;
+      }
       switch (player.position) {
         case "Goalkeeper":
           goalkeepers.push(player);
@@ -66,9 +69,6 @@ const TeamInfo = ({ shortNames, teamId }) => {
           break;
         case "Attacker":
           attackers.push(player);
-          break;
-        case null:
-          coach = player;
           break;
       }
     });
@@ -94,7 +94,13 @@ const TeamInfo = ({ shortNames, teamId }) => {
 
     return (
       <>
-        <button className="teamInfo__collapse">
+        <button
+          className="teamInfo__collapse"
+          onClick={() => {
+            setSelectedTeam(null);
+            setTeamInfo(null);
+          }}
+        >
           <i className="fas fa-arrow-left"></i>
         </button>
         <div className="teamInfo__cover"></div>

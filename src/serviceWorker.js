@@ -1,4 +1,4 @@
-const CACHE_NAME = "site-static-v1";
+const CACHE_NAME = "site-static-v1.1";
 let staticAssets = [
   "/",
   "/styles.css",
@@ -13,7 +13,6 @@ let staticAssets = [
   "https://res.cloudinary.com/rdaahal/image/upload/v1609246224/FootballStats/Icons/juggle-192x192_jbowkw.png",
   "https://res.cloudinary.com/rdaahal/image/upload/v1609243801/FootballStats/background_egtbrw.webp",
   "https://res.cloudinary.com/rdaahal/image/upload/v1609243890/FootballStats/background_mobile_hlw9ao.webp",
-  "/manifest.webmanifest",
   "https://kit.fontawesome.com/2628210dc1.js",
   "https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap",
   "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2",
@@ -52,7 +51,7 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   const { request } = event;
-  const urlRegex = [/:\/\/crests/];
+  const fetchAndCache = [/:\/\/crests/];
   event.respondWith(
     caches
       .match(request)
@@ -61,7 +60,7 @@ self.addEventListener("fetch", (event) => {
           console.log("returning from cache " + request.url);
           return response;
         }
-        if (urlRegex.some((regex) => regex.test(request.url))) {
+        if (fetchAndCache.some((regex) => regex.test(request.url))) {
           console.log("about to fetch and cache");
           caches
             .open("api")

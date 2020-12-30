@@ -153,7 +153,11 @@ const Matches = () => {
           </section>
         </main>
         {selectedTeam ? (
-          <TeamInfo shortNames={shortNames} teamId={selectedTeam} />
+          <TeamInfo
+            shortNames={shortNames}
+            teamId={selectedTeam}
+            setSelectedTeam={setSelectedTeam}
+          />
         ) : (
           <TeamInfo />
         )}
