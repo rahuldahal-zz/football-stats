@@ -6,11 +6,14 @@ function setLoader() {
 
 export function showLoader() {
   !loader && setLoader();
-  loader && loader.classList.remove("loader__hidden");
+  loader && loader.classList.remove("loader--hidden");
 }
 
 export function hideLoader() {
   !loader && setLoader();
 
-  loader && loader.classList.add("loader__hidden");
+  loader && loader.classList.add("loader--loaded");
+  setTimeout(() => {
+    loader && loader.classList.add("loader--hidden");
+  }, 500);
 }

@@ -1,11 +1,30 @@
 .loader {
   position: fixed;
+  top: 0;
   width: 100vw;
   height: 100vh;
-  top: 0;
   z-index: 5;
-  background-color: #f4e6f4;
-  color: #027733;
+  background-color: rgba(18, 49, 1, 0.96);
+  color: #f4e6f4;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #f4e6f4;
+    transform-origin: left;
+    transform: scaleX(0);
+    animation: loading 1s ease-in-out forwards;
+  }
+
+  &--loaded {
+    &::before {
+      animation: loaded 0.3s ease-in-out forwards;
+    }
+  }
 
   &__wrap {
     text-align: center;
@@ -17,19 +36,24 @@
 
   &__image {
     width: auto;
-    animation: loading 0.3s ease-in-out alternate infinite;
   }
 
-  &__hidden {
+  &--hidden {
     display: none !important;
   }
 }
 
 @keyframes loading {
-  50% {
-    transform: translateX(-10px);
+  100% {
+    transform: scaleX(0.6);
+  }
+}
+
+@keyframes loaded {
+  0% {
+    transform: scaleX(0.6);
   }
   100% {
-    transform: translateX(10px);
+    transform: scaleX(1);
   }
 }

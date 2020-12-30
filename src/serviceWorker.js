@@ -33,6 +33,7 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("activate", (event) => {
+  console.log("is activated");
   const cacheWhitelist = [];
   cacheWhitelist.push(CACHE_NAME, "api");
 
