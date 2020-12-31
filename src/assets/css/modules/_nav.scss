@@ -105,63 +105,72 @@
 
   &__links {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     position: fixed;
     z-index: 4;
+    pointer-events: none;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
     height: 7vh;
-    justify-content: space-around;
+
+    --active-link-width: 30%;
+    --active-link-position: 14px;
+
+    .wrapper {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      justify-content: space-around;
+      gap: 2rem;
+      max-width: 25rem;
+    }
 
     @include for_768 {
       position: fixed;
       top: 93vh;
       left: 0;
-      transform: translateX(0);
       width: 100%;
       justify-content: space-around;
-      background-color: var(--leagueAccent);
+      background-color: var(--leagueTheme);
       box-shadow: 0 -6px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: 50%;
+      left: 0;
+      width: var(--active-link-width);
+      height: 5vh;
+      background-color: var(--leagueAccent);
+      border-radius: 0.5rem;
+      transform: translate(var(--active-link-position), -50%);
+      transition: transform 0.3s ease-in-out;
     }
   }
 
   &__link {
-    transition: background-color 0.2s ease-in-out;
-    background-color: var(--leagueTheme);
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
     color: #f4f4f4;
-    width: 100%;
-    padding: 0.5rem 1rem;
+    width: max-content;
     font-size: 1rem;
-    line-height: 1.9rem;
     text-align: center;
     text-decoration: none;
-    border-right: 2px solid #666;
+    cursor: pointer;
+    pointer-events: initial;
+    transition: background-color 0.2s ease-in-out;
+
+    i {
+      margin: 0;
+    }
 
     @include for_768 {
-      padding: 0.2rem 0.5rem;
       font-size: 0.9rem;
-      line-height: 2.8rem;
-    }
-
-    &--active {
-      background-color: #f4f4f4;
-      border-top: 4px solid var(--leagueTheme);
-      color: #333;
-      font-weight: bold;
-      padding-top: 0.3rem;
-
-      @include for_768 {
-        line-height: 2.25rem;
-      }
-    }
-
-    &:last-child {
-      border-right: none;
-    }
-
-    &:hover {
-      background-color: #eee;
-      color: #333;
     }
   }
 }

@@ -205,14 +205,13 @@
         position: relative;
         background-color: var(--leagueText);
         padding: 10px;
-        padding-top: 25px;
         height: max-content;
         border-bottom: 2px solid var(--leagueTheme);
 
         h5 {
           position: absolute;
           top: -2rem;
-          font-weight: 400;
+          font-weight: bold;
           left: 0;
           padding: 5px 15px;
           background-color: var(--leagueTheme);
@@ -280,7 +279,6 @@
         background-color: var(--leagueTheme);
         color: var(--leagueText);
         padding: 10px 15px;
-        padding-top: 20px;
         position: relative;
         border-radius: 0.5rem;
 

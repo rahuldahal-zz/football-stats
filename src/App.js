@@ -7,7 +7,6 @@ import Loader from "./Components/Loader";
 import { hideLoader } from "./utils/preloader";
 import Standings from "./Components/Standings";
 import Scorers from "./Components/Scorers";
-import Teams from "./Components/Teams";
 
 // CSS and SCSS
 
@@ -26,7 +25,6 @@ const App = function () {
         <Route path="/:league/matches" component={Matches} />
         <Route path="/:league/standings" component={Standings} />
         <Route path="/:league/scorers" component={Scorers} />
-        <Route path="/:league/teams" component={Teams} />
       </Router>
       <Loader />
     </>
