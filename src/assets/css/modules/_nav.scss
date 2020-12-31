@@ -148,6 +148,10 @@
       border-radius: 0.5rem;
       transform: translate(var(--active-link-position), -50%);
       transition: transform 0.3s ease-in-out;
+
+      @include for_768 {
+        background-color: #f4e6f4;
+      }
     }
   }
 
@@ -165,16 +169,21 @@
     pointer-events: initial;
     transition: background-color 0.2s ease-in-out;
 
+    @include for_768 {
+      font-size: 0.9rem;
+      color: #f4e6f4;
+    }
+
     &--active {
       color: #f4e6f4;
+
+      @include for_768 {
+        color: #333;
+      }
     }
 
     i {
       margin: 0;
-    }
-
-    @include for_768 {
-      font-size: 0.9rem;
     }
   }
 }
