@@ -43,7 +43,7 @@ const Header = ({ leagueName }) => {
         <a href="https://twitter.com/raahuldaahal">
           <i className="fab fa-twitter"></i>
         </a>
-        <a href="https://github.com/rahuldahal">
+        <a href="https://github.com/rahuldahal/football-stats">
           <i className="fab fa-github"></i>
         </a>
       </span>

@@ -46,6 +46,7 @@ const Nav = ({ currentSeason, leagueName, selected }) => {
     const { x, width } = link.getBoundingClientRect();
     navLinks.style.setProperty("--active-link-position", `${x - 8}px`);
     navLinks.style.setProperty("--active-link-width", `${width + 16}px`);
+    link.classList.add("nav__link--active");
     console.log(link, x, width);
   }
 };

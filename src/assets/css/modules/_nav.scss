@@ -1,7 +1,7 @@
 .nav {
   &__header {
     display: flex;
-    background-color: #333;
+    background-color: #f4e6f4;
     height: 7vh;
     justify-content: space-between;
     width: 100vw;
@@ -11,7 +11,7 @@
     box-shadow: 0 9px 18px -10px rgba(0, 0, 0, 0.4);
 
     .author {
-      color: #f4f4f4;
+      color: #333;
       margin-top: 2vh;
       margin-right: 30px;
       font-size: 1rem;
@@ -21,7 +21,7 @@
       }
 
       a {
-        color: #eee;
+        color: #333;
       }
     }
   }
@@ -52,7 +52,7 @@
       cursor: pointer;
       transition: transform 0.5s 0.5s cubic-bezier(0.75, -0.5, 0, 1.75);
       border-bottom-right-radius: 1rem;
-      box-shadow: 0 9px 18px -10px rgba(0, 0, 0, 0.4);
+      box-shadow: 9px 9px 18px -10px rgba(0, 0, 0, 0.4);
 
       @include for_768 {
         font-size: 1rem;
@@ -144,7 +144,7 @@
       left: 0;
       width: var(--active-link-width);
       height: 5vh;
-      background-color: var(--leagueAccent);
+      background-color: #333;
       border-radius: 0.5rem;
       transform: translate(var(--active-link-position), -50%);
       transition: transform 0.3s ease-in-out;
@@ -156,7 +156,7 @@
     gap: 0.5rem;
     justify-content: center;
     align-items: center;
-    color: #f4f4f4;
+    color: #333;
     width: max-content;
     font-size: 1rem;
     text-align: center;
@@ -164,6 +164,10 @@
     cursor: pointer;
     pointer-events: initial;
     transition: background-color 0.2s ease-in-out;
+
+    &--active {
+      color: #f4e6f4;
+    }
 
     i {
       margin: 0;

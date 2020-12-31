@@ -99,7 +99,6 @@
     }
 
     img {
-      height: 20px;
       max-width: 20px;
       display: inline-block;
       margin-right: 10px;
@@ -124,8 +123,8 @@
       padding: 1rem;
       border-right: 2px solid var(--leagueTheme);
       border-radius: unset;
-      background: rgba(var(--leagueThemeRGB), 0.7);
-      color: #f4f4f4;
+      background: #f4e6f4;
+      color: var(--leagueTheme);
       transition: background-color 0.2s ease;
 
       @include for_768 {
@@ -149,7 +148,8 @@
       }
 
       &--active {
-        background: rgba(var(--leagueThemeRGB), 0.7);
+        background: var(--leagueTheme);
+        color: var(--leagueText);
       }
     }
   }
