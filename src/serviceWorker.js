@@ -1,4 +1,4 @@
-const CACHE_NAME = "site-static-v1.3";
+const CACHE_NAME = "site-static-v2";
 let staticAssets = [
   "/",
   "/styles.css",
@@ -52,23 +52,36 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   const { request } = event;
+  const [url, protocol, host, path] = request.url.match(
+    /(http[s]?:\/\/)?([^\/\s]+\/)(.*)/
+  );
   const fetchAndCache = [/:\/\/crests/];
-  event.respondWith(
+
+  return event.respondWith(
     caches
       .match(request)
       .then(function (response) {
         if (response) {
-          console.log("returning from cache " + request.url);
-          return response;
+          // if data from API was cached > 3hrs ago, fetch again.
+
+          if (/api\.football-data\.org/.test(host)) {
+            const milliseconds = new Date() - response.headers.get("date");
+            milliseconds / (60 * 60 * 1000) > 3
+              ? fetchAndCache.push(/api\.football-data\.org/)
+              : null;
+          } else {
+            console.log("returning from cache " + url);
+            return response;
+          }
         }
-        if (fetchAndCache.some((regex) => regex.test(request.url))) {
+        if (fetchAndCache.some((regex) => regex.test(url))) {
           console.log("about to fetch and cache");
-          caches
+          return caches
             .open("api")
             .then((cache) => {
               return fetch(request)
                 .then((response) => {
-                  console.log("fetching and caching " + request.url);
+                  console.log("fetching and caching " + url);
                   cache.put(request, response.clone());
                   return response;
                 })
@@ -77,7 +90,7 @@ self.addEventListener("fetch", (event) => {
             .catch((err) => console.log(err));
         }
 
-        console.log("actually fetching... " + event.request.url);
+        console.log("actually fetching... " + url);
         return fetch(event.request);
       })
       .catch((err) => console.log(err))
