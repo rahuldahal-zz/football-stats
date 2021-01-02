@@ -131,19 +131,26 @@ const TeamInfo = ({ teamId, setSelectedTeam }) => {
                 <div className="general__contact">
                   <h4>Contact</h4>
                   <address>{address}</address>
-                  <a href={`mailto:${email}`} className="general__email">
-                    <i className="fas fa-at"></i>
-                    {email}
-                  </a>
-                  <a
-                    href={website}
-                    className="general__website"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <i className="fas fa-external-link-alt"></i>
-                    {website}
-                  </a>
+                  <span className="general__email">
+                    {email ? (
+                      <a href={`mailto:${email}`}>
+                        <i className="fas fa-at"></i>
+                        {email}
+                      </a>
+                    ) : (
+                      "N/A"
+                    )}
+                  </span>
+                  <span className="general__website">
+                    {website ? (
+                      <a href={website} target="_blank" rel="noreferrer">
+                        <i className="fas fa-external-link-alt"></i>
+                        {website}
+                      </a>
+                    ) : (
+                      "N/A"
+                    )}
+                  </span>
                 </div>
               </div>
               <div className="general__form">

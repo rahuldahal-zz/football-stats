@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import NavLinks from "./NavLinks";
 import Header from "./Header";
+import TeamInfo from "./TeamInfo";
 import LeagueDetails from "../utils/leagueDetails";
 import { fetchData } from "../utils/fetchData";
 import LocalStorage from "../utils/localStorage";
@@ -18,6 +19,7 @@ const Standings = () => {
   const [standings, setStandings] = useState([]);
   const [standingsType, setStandingsType] = useState("TOTAL");
   const [shortNames, setShortNames] = useState({});
+  const [selectedTeam, setSelectedTeam] = useState(null);
 
   useEffect(() => {
     setStandings(null);
@@ -131,13 +133,20 @@ const Standings = () => {
                 return (
                   <tr key={team.id}>
                     <td>{position}</td>
-                    <td className="showTeamInfo" data-id={team.id}>
-                      <img
-                        src={team.crestUrl}
-                        className="clubLogo"
-                        alt={team.name}
-                      />
-                      <span className="teamName">{team.shortName}</span>
+                    <td>
+                      <span
+                        role="button"
+                        tabIndex="0"
+                        onClick={() => setSelectedTeam(team.id)}
+                        onKeyUp={() => setSelectedTeam(team.id)}
+                      >
+                        <img
+                          src={team.crestUrl}
+                          className="clubLogo"
+                          alt={team.name}
+                        />
+                        <span className="teamName">{team.shortName}</span>
+                      </span>
                     </td>
                     <td>{playedGames}</td>
                     <td>{won}</td>
@@ -179,6 +188,15 @@ const Standings = () => {
             </div>
           </aside>
         </main>
+        {selectedTeam ? (
+          <TeamInfo
+            shortNames={shortNames}
+            teamId={selectedTeam}
+            setSelectedTeam={setSelectedTeam}
+          />
+        ) : (
+          <TeamInfo />
+        )}
       </>
     );
   }

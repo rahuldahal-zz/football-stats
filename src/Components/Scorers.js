@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import NavLinks from "./NavLinks";
 import Header from "./Header";
+import TeamInfo from "./TeamInfo";
 import LeagueDetails from "../utils/leagueDetails";
 import { fetchData } from "../utils/fetchData";
 import LocalStorage from "../utils/localStorage";
@@ -17,6 +18,7 @@ const Scorers = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [scorers, setScorers] = useState([]);
   const [shortNames, setShortNames] = useState({});
+  const [selectedTeam, setSelectedTeam] = useState(null);
 
   useEffect(() => {
     setScorers(null);
@@ -90,7 +92,13 @@ const Scorers = () => {
                   {nationality}
                 </p>
 
-                <div className="scorer__team">
+                <div
+                  className="scorer__team"
+                  role="button"
+                  tabIndex="0"
+                  onClick={() => setSelectedTeam(team.id)}
+                  onKeyUp={() => setSelectedTeam(team.id)}
+                >
                   <img src={team.crestUrl} alt={`${team.shortName} logo`} />
                   <em className="teamName">{team.shortName}</em>
                 </div>
@@ -105,6 +113,15 @@ const Scorers = () => {
             );
           })}
         </main>
+        {selectedTeam ? (
+          <TeamInfo
+            shortNames={shortNames}
+            teamId={selectedTeam}
+            setSelectedTeam={setSelectedTeam}
+          />
+        ) : (
+          <TeamInfo />
+        )}
       </>
     );
   }

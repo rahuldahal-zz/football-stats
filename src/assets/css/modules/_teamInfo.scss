@@ -88,11 +88,15 @@
 
   .details {
     position: absolute;
-    top: 480px;
+    top: 420px;
     left: 50%;
     transform: translateX(-50%);
     width: 100vw;
     max-width: 1366px;
+
+    @include for_600 {
+      top: 480px;
+    }
   }
 
   .general,
@@ -276,31 +280,31 @@
       padding: 20px;
       border-bottom: 1px solid var(--leagueTheme);
       margin-bottom: 20px;
+    }
 
-      .player {
-        background-color: var(--leagueTheme);
+    .player {
+      background-color: var(--leagueTheme);
+      color: var(--leagueText);
+      padding: 10px 15px;
+      position: relative;
+      border-radius: 0.5rem;
+
+      &__name {
         color: var(--leagueText);
-        padding: 10px 15px;
-        position: relative;
-        border-radius: 0.5rem;
+        margin: 0;
+        font-weight: bold;
+      }
 
-        &__name {
-          color: var(--leagueText);
-          margin: 0;
-          font-weight: bold;
-        }
-
-        &__age {
-          position: absolute;
-          top: -1rem;
-          font-size: 0.6rem;
-          padding: 5px;
-          background-color: var(--leagueAccent);
-          color: var(--leagueText);
-          right: 0;
-          border-top-left-radius: 0.5rem;
-          border-top-right-radius: 0.5rem;
-        }
+      &__age {
+        position: absolute;
+        top: -1rem;
+        font-size: 0.6rem;
+        padding: 5px;
+        background-color: var(--leagueAccent);
+        color: var(--leagueText);
+        right: 0;
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
       }
     }
   }

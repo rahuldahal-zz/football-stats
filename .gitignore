@@ -6,3 +6,4 @@ build/
 backupData/
 coverage/
 .env
+src/index.html

@@ -1,4 +1,4 @@
-const CACHE_NAME = "site-static-v2.1";
+const CACHE_NAME = "site-static-v2.2";
 let staticAssets = [
   "/",
   "/styles.css",
@@ -11,13 +11,14 @@ let staticAssets = [
   "https://res.cloudinary.com/rdaahal/image/upload/v1609246224/FootballStats/Icons/juggle-144x144_dwpb3x.png",
   "https://res.cloudinary.com/rdaahal/image/upload/v1609246224/FootballStats/Icons/juggle-152x152_j1c8rz.png",
   "https://res.cloudinary.com/rdaahal/image/upload/v1609246224/FootballStats/Icons/juggle-192x192_jbowkw.png",
+  "https://res.cloudinary.com/rdaahal/image/upload/v1609243719/FootballStats/Leagues/premierleague.png",
+  "https://res.cloudinary.com/rdaahal/image/upload/v1609243719/FootballStats/Leagues/laliga.png",
+  "https://res.cloudinary.com/rdaahal/image/upload/v1609243719/FootballStats/Leagues/seriea.png",
+  "https://res.cloudinary.com/rdaahal/image/upload/v1609243719/FootballStats/Leagues/bundesliga.png",
+  "https://res.cloudinary.com/rdaahal/image/upload/v1609243719/FootballStats/Leagues/ligueun.png",
   "https://res.cloudinary.com/rdaahal/image/upload/v1609243801/FootballStats/background_egtbrw.webp",
   "https://res.cloudinary.com/rdaahal/image/upload/v1609243890/FootballStats/background_mobile_hlw9ao.webp",
   "https://kit.fontawesome.com/2628210dc1.js",
-  "https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap",
-  "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2",
-  "https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap",
-  "https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Mu4mxK.woff2",
   "https://ka-f.fontawesome.com/releases/v5.15.1/css/free.min.css",
   "https://ka-f.fontawesome.com/releases/v5.15.1/css/free-v4-shims.min.css",
   "https://ka-f.fontawesome.com/releases/v5.15.1/css/free-v4-font-face.min.css",
@@ -53,7 +54,7 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   const { request } = event;
   const { host, href, pathname } = new URL(request.url);
-  const fetchAndCache = [/:\/\/crests/];
+  const fetchAndCache = [/:\/\/crests/, /fonts.(googleapis|gstatic)/];
 
   return event.respondWith(
     caches
@@ -80,7 +81,7 @@ self.addEventListener("fetch", (event) => {
         }
 
         console.log("actually fetching... " + href);
-        return fetch(event.request);
+        return fetch(request);
       })
       .catch((err) => console.log(err))
   );
