@@ -7,6 +7,7 @@ import LeagueDetails from "../utils/leagueDetails";
 import { fetchData } from "../utils/fetchData";
 import LocalStorage from "../utils/localStorage";
 import { showLoader, hideLoader } from "../utils/preloader";
+import TweenLite from "gsap";
 
 const leagueDetails = new LeagueDetails();
 
@@ -19,6 +20,23 @@ const Scorers = () => {
   const [scorers, setScorers] = useState([]);
   const [shortNames, setShortNames] = useState({});
   const [selectedTeam, setSelectedTeam] = useState(null);
+
+  useEffect(() => {
+    if (isLoaded) {
+      TweenLite.to(".scorer", {
+        css: { visibility: "visible" },
+        delay: 0,
+      });
+
+      TweenLite.from(".scorer", {
+        duration: 0.5,
+        opacity: 0,
+        x: 20,
+        stagger: 0.2,
+        ease: "linear",
+      });
+    }
+  }, [isLoaded]);
 
   useEffect(() => {
     setScorers(null);
@@ -65,7 +83,6 @@ const Scorers = () => {
     showLoader();
     return null;
   } else {
-    console.log(scorers);
     return (
       <>
         <nav className="nav">

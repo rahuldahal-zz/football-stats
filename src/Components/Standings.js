@@ -7,6 +7,7 @@ import LeagueDetails from "../utils/leagueDetails";
 import { fetchData } from "../utils/fetchData";
 import LocalStorage from "../utils/localStorage";
 import { showLoader, hideLoader } from "../utils/preloader";
+import TweenLite from "gsap";
 
 const leagueDetails = new LeagueDetails();
 
@@ -20,6 +21,23 @@ const Standings = () => {
   const [standingsType, setStandingsType] = useState("TOTAL");
   const [shortNames, setShortNames] = useState({});
   const [selectedTeam, setSelectedTeam] = useState(null);
+
+  useEffect(() => {
+    if (isLoaded) {
+      TweenLite.to("tbody tr", {
+        css: { visibility: "visible" },
+        delay: 0,
+      });
+
+      TweenLite.from("tbody tr", {
+        duration: 0.5,
+        opacity: 0,
+        y: -10,
+        stagger: 0.2,
+        ease: "linear",
+      });
+    }
+  }, [isLoaded]);
 
   useEffect(() => {
     setStandings(null);

@@ -8,6 +8,8 @@ import { showLoader, hideLoader } from "../utils/preloader";
 import NavLinks from "./NavLinks";
 import Header from "./Header";
 import TeamInfo from "./TeamInfo";
+import { TweenLite, Power3 } from "gsap";
+import { Tween } from "gsap/gsap-core";
 
 const leagueDetails = new LeagueDetails();
 
@@ -37,6 +39,39 @@ const Matches = () => {
   const [matchDay, setMatchDay] = useState(null);
   const [shortNames, setShortNames] = useState({});
   const [selectedTeam, setSelectedTeam] = useState(null);
+
+  useEffect(() => {
+    if (isLoaded) {
+      // matchday header
+
+      TweenLite.from(".matchday__count", {
+        duration: 0.3,
+        x: -20,
+        opacity: 0,
+        ease: "linear",
+      });
+
+      TweenLite.from(".matchday__picker", {
+        duration: 0.5,
+        y: -20,
+        opacity: 0,
+        ease: "linear",
+      });
+
+      // match card
+      TweenLite.to(".match", {
+        css: { visibility: "visible" },
+        delay: 0,
+      });
+      TweenLite.from(".match", {
+        duration: 0.5,
+        opacity: 0,
+        x: 20,
+        stagger: 0.2,
+        ease: "linear",
+      });
+    }
+  }, [isLoaded]);
 
   useEffect(() => {
     setMatchDay(null);

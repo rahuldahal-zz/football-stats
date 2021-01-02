@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 const Nav = ({ currentSeason, leagueName, selected }) => {
   const leagueTrimmed = leagueName.toLowerCase().replace(" ", "");
+  let navLinks = useRef(null);
+  let selectedLink = useRef(null);
 
   useEffect(() => {
-    updateActiveLink(document.querySelector(`.nav__link--${selected}`));
+    updateActiveLink(selectedLink);
   }, []);
 
   return (
-    <section className="nav__links">
+    <section className="nav__links" ref={(el) => (navLinks = el)}>
       <div className="wrapper">
         <Link
+          ref={selected === "matches" ? (el) => (selectedLink = el) : null}
           to={`/${leagueTrimmed}/matches`}
           state={{ currentSeason }}
           className="nav__link nav__link--matches"
@@ -21,6 +24,7 @@ const Nav = ({ currentSeason, leagueName, selected }) => {
         </Link>
 
         <Link
+          ref={selected === "scorers" ? (el) => (selectedLink = el) : null}
           to={`/${leagueTrimmed}/scorers`}
           state={{ currentSeason }}
           className="nav__link nav__link--scorers"
@@ -30,6 +34,7 @@ const Nav = ({ currentSeason, leagueName, selected }) => {
         </Link>
 
         <Link
+          ref={selected === "standings" ? (el) => (selectedLink = el) : null}
           to={`/${leagueTrimmed}/standings`}
           state={{ currentSeason }}
           className="nav__link nav__link--standings"
@@ -42,7 +47,6 @@ const Nav = ({ currentSeason, leagueName, selected }) => {
   );
 
   function updateActiveLink(link) {
-    const navLinks = document.querySelector(".nav__links");
     const { x, width } = link.getBoundingClientRect();
     navLinks.style.setProperty("--active-link-position", `${x - 8}px`);
     navLinks.style.setProperty("--active-link-width", `${width + 16}px`);

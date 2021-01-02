@@ -27,6 +27,7 @@
   min-height: 100%;
 
   .match {
+    visibility: hidden;
     position: relative;
     display: flex;
     flex-direction: column;

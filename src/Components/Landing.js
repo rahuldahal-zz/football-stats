@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import LeagueCard from "./LeagueCard";
+import { TweenLite, Power3 } from "gsap";
 
 const Landing = () => {
+  useEffect(() => {
+    TweenLite.to(".leagues__button", {
+      css: { visibility: "visible" },
+      delay: 0,
+    });
+    TweenLite.from(".leagues__button", {
+      duration: 0.5,
+      opacity: 0,
+      y: 20,
+      stagger: 0.2,
+      ease: "linear",
+    });
+  }, []);
+
   return (
     <main className="landing">
       <h1 className="landing__title">FootballStats</h1>
