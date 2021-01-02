@@ -50,19 +50,41 @@ export function fetchData(dataToBeFetched, id, params) {
     let myHeaders = new Headers({
       "X-Auth-Token": "81e1d8497a114fccac5688e87f6741a0",
     });
-    fetch(url, {
-      method: "GET",
-      headers: myHeaders,
-    })
-      .then((response) => {
-        caches.open("api").then((cache) => {
-          cache.put(url, response.clone());
+
+    const { pathname } = new URL(url);
+    const lastUpdated = localStorage.getItem(pathname);
+    const milliseconds = lastUpdated
+      ? new Date() - new Date(lastUpdated)
+      : null;
+
+    if (milliseconds && milliseconds / (1000 * 60 * 60) > 1) {
+      console.log("deleted cache ", pathname);
+      caches.open("api").then((cache) => {
+        cache.delete(url).then(() => {
+          beginFetching();
         });
-        return response.clone().json();
+      });
+    } else {
+      console.log("not deleted, fetching from cache");
+      beginFetching();
+    }
+
+    function beginFetching() {
+      fetch(url, {
+        method: "GET",
+        headers: myHeaders,
       })
-      .then((data) => {
-        resolve(data);
-      })
-      .catch((error) => reject(error));
+        .then((response) => {
+          caches.open("api").then((cache) => {
+            cache.put(url, response.clone());
+            localStorage.setItem(pathname, new Date().toLocaleString());
+          });
+          return response.clone().json();
+        })
+        .then((data) => {
+          resolve(data);
+        })
+        .catch((error) => reject(error));
+    }
   });
 }

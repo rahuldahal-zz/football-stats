@@ -1,4 +1,4 @@
-const CACHE_NAME = "site-static-v2";
+const CACHE_NAME = "site-static-v2.1";
 let staticAssets = [
   "/",
   "/styles.css",
@@ -29,7 +29,7 @@ self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(staticAssets))
   );
-  // self.skipWaiting(); // makes the new service-worker take effect immediately
+  self.skipWaiting(); // makes the new service-worker take effect immediately
 });
 
 self.addEventListener("activate", (event) => {
@@ -52,9 +52,7 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   const { request } = event;
-  const [url, protocol, host, path] = request.url.match(
-    /(http[s]?:\/\/)?([^\/\s]+\/)(.*)/
-  );
+  const { host, href, pathname } = new URL(request.url);
   const fetchAndCache = [/:\/\/crests/];
 
   return event.respondWith(
@@ -62,26 +60,17 @@ self.addEventListener("fetch", (event) => {
       .match(request)
       .then(function (response) {
         if (response) {
-          // if data from API was cached > 3hrs ago, fetch again.
-
-          if (/api\.football-data\.org/.test(host)) {
-            const milliseconds = new Date() - response.headers.get("date");
-            milliseconds / (60 * 60 * 1000) > 3
-              ? fetchAndCache.push(/api\.football-data\.org/)
-              : null;
-          } else {
-            console.log("returning from cache " + url);
-            return response;
-          }
+          console.log("returning from cache ", pathname);
+          return response;
         }
-        if (fetchAndCache.some((regex) => regex.test(url))) {
+        if (fetchAndCache.some((regex) => regex.test(href))) {
           console.log("about to fetch and cache");
           return caches
             .open("api")
             .then((cache) => {
               return fetch(request)
                 .then((response) => {
-                  console.log("fetching and caching " + url);
+                  console.log("fetching and caching " + href);
                   cache.put(request, response.clone());
                   return response;
                 })
@@ -90,7 +79,7 @@ self.addEventListener("fetch", (event) => {
             .catch((err) => console.log(err));
         }
 
-        console.log("actually fetching... " + url);
+        console.log("actually fetching... " + href);
         return fetch(event.request);
       })
       .catch((err) => console.log(err))
