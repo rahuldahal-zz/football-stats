@@ -4,9 +4,14 @@ import { TweenLite, Power3 } from "gsap";
 
 const Landing = () => {
   useEffect(() => {
-    TweenLite.to(".leagues__button", {
+    TweenLite.to(".landing", {
       css: { visibility: "visible" },
       delay: 0,
+    });
+    TweenLite.from(".landing__title", {
+      opacity: 0,
+      y: -20,
+      ease: "linear",
     });
     TweenLite.from(".leagues__button", {
       duration: 0.5,

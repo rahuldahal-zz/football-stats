@@ -20,6 +20,15 @@
         margin-right: 20px;
       }
 
+      @include for_480 {
+        font-size: 0.9rem;
+        margin-right: 0.5rem;
+
+        i {
+          margin-left: 0.3rem;
+        }
+      }
+
       a {
         color: #333;
       }
@@ -56,6 +65,10 @@
 
       @include for_768 {
         font-size: 1rem;
+      }
+
+      @include for_480 {
+        font-size: 0.9rem;
       }
 
       i {
@@ -124,6 +137,10 @@
       justify-content: space-around;
       gap: 2rem;
       max-width: 25rem;
+
+      @include for_480 {
+        gap: 1rem;
+      }
     }
 
     @include for_768 {

@@ -1,4 +1,5 @@
 .landing {
+  visibility: hidden;
   position: relative;
   z-index: 2;
   width: 100vw;
@@ -32,6 +33,10 @@
 
     @include for_768 {
       font-size: 3rem;
+    }
+
+    @include for_480 {
+      font-size: 2.7rem;
     }
   }
 
@@ -108,13 +113,14 @@
 
 .leagues {
   width: 90vw;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  grid-gap: 40px;
-  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 80px;
+  justify-content: flex-start;
   align-items: center;
 
   @include for_768 {
+    justify-content: center;
     grid-gap: 20px;
   }
   @media only screen and (max-height: 650px) {
@@ -126,7 +132,6 @@
     display: flex;
     width: 150px !important;
     height: 120px;
-    visibility: hidden;
     cursor: pointer;
     border-radius: 0px;
     background: #ffffff;

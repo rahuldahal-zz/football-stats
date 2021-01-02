@@ -79,6 +79,13 @@
     box-shadow: -6px -6px 12px rgba(0, 0, 0, 0.2);
   }
 
+  &__goals,
+  &__team {
+    @include for_480 {
+      right: 0;
+    }
+  }
+
   &__age {
     position: absolute;
     left: 0;
