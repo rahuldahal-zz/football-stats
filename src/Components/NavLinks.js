@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
+let isUpdatedOnce = false;
+
 const Nav = ({ currentSeason, leagueName, selected }) => {
   const leagueTrimmed = leagueName.toLowerCase().replace(" ", "");
   let navLinks = useRef(null);
@@ -48,8 +50,14 @@ const Nav = ({ currentSeason, leagueName, selected }) => {
 
   function updateActiveLink(link) {
     const { x, width } = link.getBoundingClientRect();
-    navLinks.style.setProperty("--active-link-position", `${x - 8}px`);
-    navLinks.style.setProperty("--active-link-width", `${width + 16}px`);
+    if (isUpdatedOnce) {
+      navLinks.style.setProperty("--active-link-position", `${x - 8}px`);
+      navLinks.style.setProperty("--active-link-width", `${width + 16}px`);
+    } else {
+      navLinks.style.setProperty("--active-link-position", `${x - 16}px`);
+      navLinks.style.setProperty("--active-link-width", `${width + 24}px`);
+      isUpdatedOnce = true;
+    }
     link.classList.add("nav__link--active");
     console.log(x - 8, width + 16);
   }

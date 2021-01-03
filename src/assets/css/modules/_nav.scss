@@ -3,6 +3,7 @@
     display: flex;
     background-color: #f4e6f4;
     height: 7vh;
+    max-height: 60px;
     justify-content: space-between;
     width: 100vw;
     position: fixed;
@@ -52,6 +53,7 @@
       position: relative;
       z-index: 5;
       height: 9vh;
+      max-height: 90px;
       background-color: var(--leagueTheme);
       color: #f4f4f4;
       text-align: center;
@@ -160,7 +162,6 @@
       top: 50%;
       left: 0;
       width: var(--active-link-width);
-      min-width: 97px;
       height: 5vh;
       background-color: #333;
       border-radius: 0.5rem;
