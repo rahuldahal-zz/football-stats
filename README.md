@@ -13,9 +13,8 @@ of [top-tier](#top-tier-leagues) football leagues.
 
 ## Some Screenshots
 
-<img src="https://res.cloudinary.com/rdaahal/image/upload/v1609248255/FootballStats/screenshots/footballstats-liverpool-info.png" width="250px" style="float: left;" />
-<img src="https://res.cloudinary.com/rdaahal/image/upload/v1609248246/FootballStats/screenshots/footballstats-premierleague-standings.png" width="250px" style="float: left;" />
-<img src="https://res.cloudinary.com/rdaahal/image/upload/v1609247988/FootballStats/screenshots/footballstats-bundesliga-matches.png" width="500px"/>
+<img src="https://res.cloudinary.com/rdaahal/image/upload/v1609677903/FootballStats/screenshots/mockup_a3uuoo.png" />
+
 
 ## Top Tier Leagues
 
