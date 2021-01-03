@@ -30,6 +30,7 @@ const Scorers = () => {
 
       TweenLite.from(".scorer", {
         duration: 0.5,
+        delay: 0.5,
         opacity: 0,
         x: 20,
         stagger: 0.2,

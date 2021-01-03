@@ -46,6 +46,7 @@ const Matches = () => {
 
       TweenLite.from(".matchday__count", {
         duration: 0.3,
+        delay: 0.5,
         x: -20,
         opacity: 0,
         ease: "linear",
@@ -53,6 +54,7 @@ const Matches = () => {
 
       TweenLite.from(".matchday__picker", {
         duration: 0.5,
+        delay: 0.5,
         y: -20,
         opacity: 0,
         ease: "linear",
@@ -65,6 +67,7 @@ const Matches = () => {
       });
       TweenLite.from(".match", {
         duration: 0.5,
+        delay: 0.5,
         opacity: 0,
         x: 20,
         stagger: 0.2,

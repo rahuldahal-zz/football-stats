@@ -15,5 +15,5 @@ export function hideLoader() {
   loader && loader.classList.add("loader--loaded");
   setTimeout(() => {
     loader && loader.classList.add("loader--hidden");
-  }, 500);
+  }, 300);
 }

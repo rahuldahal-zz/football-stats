@@ -3,9 +3,9 @@
   top: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(18, 49, 1, 0.96);
+  background-color: rgba(244, 230, 244, 0.97);
   z-index: 5;
-  color: #f4e6f4;
+  color: #00471e;
 
   &::before {
     content: "";
@@ -14,7 +14,7 @@
     left: 0;
     width: 100%;
     height: 4px;
-    background-color: #f4e6f4;
+    background-color: #0dd661;
     transform-origin: left;
     transform: scaleX(0);
     animation: loading 1s ease-in-out forwards;

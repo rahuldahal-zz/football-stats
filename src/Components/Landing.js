@@ -9,12 +9,15 @@ const Landing = () => {
       delay: 0,
     });
     TweenLite.from(".landing__title", {
+      duration: 0.5,
+      delay: 0.3,
       opacity: 0,
       y: -20,
       ease: "linear",
     });
     TweenLite.from(".leagues__button", {
       duration: 0.5,
+      delay: 0.5,
       opacity: 0,
       y: 20,
       stagger: 0.2,
