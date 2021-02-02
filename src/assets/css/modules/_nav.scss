@@ -140,8 +140,24 @@
       gap: 2rem;
       max-width: 25rem;
 
+      @supports not (gap: 2rem) {
+        margin-right: 2rem;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+
       @include for_480 {
         gap: 1rem;
+
+        @supports not (gap: 1rem) {
+          margin-right: 1rem;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
       }
     }
 

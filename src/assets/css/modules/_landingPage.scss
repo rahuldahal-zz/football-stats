@@ -113,18 +113,18 @@
 
 .leagues {
   width: 90vw;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 80px;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-gap: 80px;
+  justify-items: center;
   align-items: center;
 
   @include for_768 {
     justify-content: center;
     grid-gap: 20px;
-  }
-  @media only screen and (max-height: 650px) {
-    grid-gap: 10px;
+    @media only screen and (max-height: 650px) {
+      grid-gap: 10px;
+    }
   }
 
   &__button {
@@ -149,7 +149,7 @@
     }
 
     &:hover::after {
-      content: "See Table";
+      content: "Upcoming Matches";
     }
   }
 
