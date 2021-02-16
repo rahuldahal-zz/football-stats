@@ -1,3 +1,15 @@
+@mixin for_1600() {
+  @media only screen and (max-width: 1600px) {
+    @content;
+  }
+}
+
+@mixin for_1200() {
+  @media only screen and (max-width: 1200px) {
+    @content;
+  }
+}
+
 @mixin for_1024() {
   @media only screen and (max-width: 1024px) {
     @content;

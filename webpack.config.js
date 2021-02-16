@@ -55,7 +55,7 @@ if (currentTask === "dev") {
     new HtmlWebPackPlugin({
       filename: "index.html",
       template: "./src/index.ejs",
-      devServer: "http://localhost:5000",
+      devServer: "http://127.0.0.1:5000",
     })
   );
   // config.watch = true;

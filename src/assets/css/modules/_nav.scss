@@ -4,6 +4,7 @@
     background-color: #f4e6f4;
     height: 7vh;
     max-height: 60px;
+    min-height: 50px;
     justify-content: space-between;
     width: 100vw;
     position: fixed;
@@ -39,14 +40,14 @@
   &__leagues {
     background: none;
     padding: 0;
-    width: 200px;
+    width: 230px;
 
     &:hover {
       transform: translateY(0);
     }
 
     @include for_768 {
-      width: 160px;
+      width: 180px;
     }
 
     .selected {
@@ -54,12 +55,13 @@
       z-index: 5;
       height: 9vh;
       max-height: 90px;
+      min-height: 70px;
       background-color: var(--leagueTheme);
       color: #f4f4f4;
       text-align: center;
       font-weight: bold;
-      font-size: 1.1rem;
-      padding-top: 20px;
+      font-size: 1.3rem;
+      line-height: 3;
       cursor: pointer;
       transition: transform 0.5s 0.5s cubic-bezier(0.75, -0.5, 0, 1.75);
       border-bottom-right-radius: 1rem;
@@ -70,7 +72,8 @@
       }
 
       @include for_480 {
-        font-size: 0.9rem;
+        line-height: 4;
+        font-size: 1rem;
       }
 
       i {
@@ -128,6 +131,8 @@
     pointer-events: none;
     top: 0;
     height: 7vh;
+    max-height: 60px;
+    min-height: 50px;
 
     --active-link-width: 30%;
     --active-link-position: 14px;
@@ -136,28 +141,11 @@
       position: relative;
       z-index: 5;
       display: flex;
-      justify-content: space-around;
-      gap: 2rem;
-      max-width: 25rem;
-
-      @supports not (gap: 2rem) {
-        margin-right: 2rem;
-
-        &:last-child {
-          margin-right: 0;
-        }
-      }
+      justify-content: space-between;
+      width: 360px;
 
       @include for_480 {
-        gap: 1rem;
-
-        @supports not (gap: 1rem) {
-          margin-right: 1rem;
-
-          &:last-child {
-            margin-right: 0;
-          }
-        }
+        width: 320px;
       }
     }
 
@@ -179,6 +167,7 @@
       left: 0;
       width: var(--active-link-width);
       height: 5vh;
+      min-height: 30px;
       background-color: #333;
       border-radius: 0.5rem;
       transform: translate(var(--active-link-position), -50%);
@@ -192,7 +181,6 @@
 
   &__link {
     display: flex;
-    gap: 0.5rem;
     justify-content: center;
     align-items: center;
     color: #333;
@@ -218,7 +206,7 @@
     }
 
     i {
-      margin: 0;
+      margin-right: 0.5rem;
     }
   }
 }
