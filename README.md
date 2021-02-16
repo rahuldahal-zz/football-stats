@@ -1,6 +1,7 @@
 
 # FootballStats
 ![MIT LICENSE](https://img.shields.io/github/license/rahuldahal/football-stats)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/891038a1-dc0a-4d0c-97fe-65c3e0a9aff6/deploy-status)](https://app.netlify.com/sites/footballstats-react/deploys)
 
 A platform that is dedicated to football fans. Providing,
 
