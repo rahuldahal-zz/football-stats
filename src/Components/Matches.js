@@ -184,7 +184,12 @@ const Matches = () => {
                     status={status}
                     fullTime={score.fullTime}
                   />
-                  <small className="match__date">{date.toLocaleString()}</small>
+                  <small className="match__date">
+                    {/* {date.toLocaleString()} */}
+                    {status === "FINISHED"
+                      ? `Finished ${score.fullTime.homeTeam} : ${score.fullTime.awayTeam}`
+                      : date.toLocaleString()}
+                  </small>
                 </div>
               );
             })}
