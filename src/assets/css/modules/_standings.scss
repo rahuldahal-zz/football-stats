@@ -135,6 +135,7 @@
       &:hover,
       &:focus {
         background-color: var(--leagueTheme);
+        color: var(--leagueText);
         transform: translateY(0);
         box-shadow: unset;
       }
