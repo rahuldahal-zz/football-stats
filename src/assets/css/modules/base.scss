@@ -41,13 +41,29 @@ body {
     pointer-events: none;
   }
 
-  i {
-    margin-left: 1rem;
-  }
-
   h1 {
     @include for_768 {
       font-size: 2.3rem;
+    }
+  }
+
+  .textWithIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+
+    svg {
+      margin-right: 0.5em;
+    }
+
+    &--iconRight {
+      flex-direction: row-reverse;
+
+      svg {
+        margin-right: 0;
+        margin-left: 0.5em;
+      }
     }
   }
 }

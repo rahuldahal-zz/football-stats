@@ -10,6 +10,7 @@ import Header from "./Header";
 import TeamInfo from "./TeamInfo";
 import { TweenLite, Power3 } from "gsap";
 import { Tween } from "gsap/gsap-core";
+import TextWithIcon from "./TextWithIcon";
 
 const leagueDetails = new LeagueDetails();
 
@@ -143,11 +144,10 @@ const Matches = () => {
                 setIsLoaded(false);
               }}
             >
-              <i
-                className="fas fa-arrow-left"
-                style={{ marginRight: "1rem", marginLeft: "0" }}
-              ></i>
-              Previous
+              <TextWithIcon
+                textContent="Previous"
+                pathData={["M7 16l-4-4m0 0l4-4m-4 4h18"]}
+              />
             </button>
             <button
               className="matchday__picker"
@@ -156,8 +156,11 @@ const Matches = () => {
                 setIsLoaded(false);
               }}
             >
-              Next
-              <i className="fas fa-arrow-right"></i>
+              <TextWithIcon
+                textContent="Next"
+                pathData={["M17 8l4 4m0 0l-4 4m4-4H3"]}
+                iconAlign="right"
+              />
             </button>
           </header>
           <section className="matches">

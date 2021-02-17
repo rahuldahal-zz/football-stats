@@ -1,4 +1,4 @@
-const CACHE_NAME = "site-static-v2.7";
+const CACHE_NAME = "site-static-v3.0";
 let staticAssets = [
   "/",
   "/styles.css",
@@ -18,10 +18,6 @@ let staticAssets = [
   "https://res.cloudinary.com/rdaahal/image/upload/v1609243719/FootballStats/Leagues/ligueun.png",
   "https://res.cloudinary.com/rdaahal/image/upload/v1609243801/FootballStats/background_egtbrw.webp",
   "https://res.cloudinary.com/rdaahal/image/upload/v1609243890/FootballStats/background_mobile_hlw9ao.webp",
-  "https://kit.fontawesome.com/2628210dc1.js",
-  "https://ka-f.fontawesome.com/releases/v5.15.1/css/free.min.css",
-  "https://ka-f.fontawesome.com/releases/v5.15.1/css/free-v4-shims.min.css",
-  "https://ka-f.fontawesome.com/releases/v5.15.1/css/free-v4-font-face.min.css",
 ];
 
 // handle "caching" here

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import LeagueCard from "./LeagueCard";
 import { TweenLite, Power3 } from "gsap";
 

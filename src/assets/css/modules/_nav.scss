@@ -17,6 +17,8 @@
       margin-top: 2vh;
       margin-right: 30px;
       font-size: 1rem;
+      display: flex;
+      align-items: center;
 
       @include for_768 {
         margin-right: 20px;
@@ -33,6 +35,13 @@
 
       a {
         color: #333;
+        margin-left: 0.25rem;
+
+        svg {
+          width: 24px;
+          margin-left: 1rem;
+          fill: var(--leagueTheme);
+        }
       }
     }
   }
@@ -76,12 +85,8 @@
         font-size: 1rem;
       }
 
-      i {
-        transition: transform 0.2s cubic-bezier(0.75, -0.5, 0, 1.75);
-      }
-
-      &:hover i {
-        transform: scale(1.5);
+      span {
+        margin: auto;
       }
     }
 
