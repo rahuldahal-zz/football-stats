@@ -231,7 +231,7 @@ const Matches = () => {
         </div>
         <strong>v/s</strong>
         <div
-          className="awayTeam"
+          className="team__away"
           role="button"
           tabIndex="0"
           onClick={() => setSelectedTeam(awayTeam.id)}

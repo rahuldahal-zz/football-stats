@@ -75,9 +75,11 @@
       line-height: 40px;
       width: 100%;
       background-color: #000;
-      color: #fff;
+      color: #f4f4f4;
       text-align: center;
       box-shadow: 0 -4px 8px -5px rgba(0, 0, 0, 0.6);
+      border-bottom-left-radius: 0.5em;
+      border-bottom-right-radius: 0.5em;
       transform-origin: bottom;
       transform: scaleY(0);
       transition: transform 0.2s cubic-bezier(0.75, -0.5, 0, 1.75);
@@ -170,7 +172,7 @@
     }
 
     &:hover::after {
-      content: "Upcoming Matches";
+      content: "See Matchday";
     }
   }
 
