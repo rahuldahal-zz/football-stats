@@ -6,6 +6,7 @@ export default function TextWithIcon({
   strokeWidth = 2,
   iconAlign = "left",
   iconWidth = "1.25rem",
+  viewBox = "0 0 24 24",
 }) {
   return (
     <span
@@ -19,7 +20,7 @@ export default function TextWithIcon({
         className="textWithIcon__icon"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
-        viewBox="0 0 24 24"
+        viewBox={viewBox}
         stroke="currentColor"
         style={{ width: iconWidth }}
       >

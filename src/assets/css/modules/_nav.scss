@@ -14,9 +14,8 @@
 
     .author {
       color: #333;
-      margin-top: 2vh;
-      margin-right: 30px;
       font-size: 1rem;
+      margin-right: 2rem;
       display: flex;
       align-items: center;
 
@@ -25,21 +24,15 @@
       }
 
       @include for_480 {
-        font-size: 0.9rem;
         margin-right: 0.5rem;
-
-        i {
-          margin-left: 0.3rem;
-        }
       }
 
       a {
         color: #333;
-        margin-left: 0.25rem;
+        text-decoration: none;
+        font-style: italic;
 
         svg {
-          width: 24px;
-          margin-left: 1rem;
           fill: var(--leagueTheme);
         }
       }
