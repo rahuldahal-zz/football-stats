@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import LeagueCard from "./LeagueCard";
+import LeagueCard from "../Components/LeagueCard";
 import { TweenLite, Power3 } from "gsap";
 
 const Landing = () => {

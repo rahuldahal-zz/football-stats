@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Route, BrowserRouter as Router } from "react-router-dom";
-import Landing from "./Components/Landing";
-import Matches from "./Components/Matches";
-import Loader from "./Components/Loader";
+import Landing from "./Screens/Landing";
+import Matches from "./Screens/Matches";
+import Loader from "./Screens/Loader";
 import { hideLoader } from "./utils/preloader";
-import Standings from "./Components/Standings";
-import Scorers from "./Components/Scorers";
+import Standings from "./Screens/Standings";
+import Scorers from "./Screens/Scorers";
 
 // CSS and SCSS
 

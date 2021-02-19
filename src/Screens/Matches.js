@@ -5,12 +5,11 @@ import { fetchData } from "../utils/fetchData";
 import LocalStorage from "../utils/localStorage";
 import dateDifference from "../utils/dateDifference";
 import { showLoader, hideLoader } from "../utils/preloader";
-import NavLinks from "./NavLinks";
-import Header from "./Header";
 import TeamInfo from "./TeamInfo";
 import { TweenLite, Power3 } from "gsap";
 import { Tween } from "gsap/gsap-core";
-import TextWithIcon from "./TextWithIcon";
+import TextWithIcon from "../Components/TextWithIcon";
+import Nav from "../Components/Nav/Nav";
 
 const leagueDetails = new LeagueDetails();
 
@@ -33,7 +32,6 @@ function Countdown({ utcDate, status, fullTime }) {
 const Matches = () => {
   const { league } = useParams();
   const leagueId = leagueDetails.getId(league);
-  const leagueFullName = leagueDetails.getFullName(league);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [matches, setMatches] = useState([]);
@@ -129,11 +127,7 @@ const Matches = () => {
   } else {
     return (
       <>
-        <nav className="nav">
-          <Header leagueName={leagueFullName} />
-          <NavLinks leagueName={league} selected="matches" />
-        </nav>
-
+        <Nav leagueName={league} selectedTab="matches" />
         <main className="matchesContainer">
           <header className="matchday">
             <h3 className="matchday__count">Matchday: {matchDay}</h3>

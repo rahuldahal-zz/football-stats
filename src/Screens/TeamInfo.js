@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import TextWithIcon from "./TextWithIcon";
+import TextWithIcon from "../Components/TextWithIcon";
 import { useParams } from "react-router-dom";
 
 import { fetchData } from "../utils/fetchData";

@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import NavLinks from "./NavLinks";
-import Header from "./Header";
 import TeamInfo from "./TeamInfo";
 import LeagueDetails from "../utils/leagueDetails";
 import { fetchData } from "../utils/fetchData";
 import LocalStorage from "../utils/localStorage";
 import { showLoader, hideLoader } from "../utils/preloader";
 import TweenLite from "gsap";
+import Nav from "../Components/Nav/Nav";
 
 const leagueDetails = new LeagueDetails();
 
 const Standings = () => {
   const { league } = useParams();
   const leagueId = leagueDetails.getId(league);
-  const leagueFullName = leagueDetails.getFullName(league);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [standings, setStandings] = useState([]);
@@ -96,10 +94,7 @@ const Standings = () => {
     }
     return (
       <>
-        <nav className="nav">
-          <Header leagueName={leagueFullName} />
-          <NavLinks leagueName={league} selected="standings" />
-        </nav>
+        <Nav leagueName={league} selectedTab="standings" />
         <main className="standingsOutput">
           <table className="standingsOutput__table">
             <thead>
