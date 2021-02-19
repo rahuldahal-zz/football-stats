@@ -1,11 +1,8 @@
-.standingsOutput {
+.standings {
   display: flex;
-  position: relative;
-  z-index: 2;
   max-width: 1366px;
-  margin: 15vh auto;
+  margin: auto;
   width: 75vw;
-  padding: 0 20px;
   flex-direction: column-reverse;
   justify-content: center;
   filter: drop-shadow(5px -5px 20px rgba(0, 0, 0, 0.5));

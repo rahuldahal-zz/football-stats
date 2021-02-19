@@ -7,6 +7,7 @@ import LocalStorage from "../utils/localStorage";
 import { showLoader, hideLoader } from "../utils/preloader";
 import TweenLite from "gsap";
 import Nav from "../Components/Nav/Nav";
+import changeLeagueTheme from "../utils/changeLeagueTheme";
 
 const leagueDetails = new LeagueDetails();
 
@@ -95,8 +96,8 @@ const Standings = () => {
     return (
       <>
         <Nav leagueName={league} selectedTab="standings" />
-        <main className="standingsOutput">
-          <table className="standingsOutput__table">
+        <main className="standings container">
+          <table className="standings__table">
             <thead>
               <tr>
                 {window.innerWidth > 600 ? (
@@ -175,7 +176,7 @@ const Standings = () => {
             </tbody>
           </table>
 
-          <aside className="standingsOutput__filter">
+          <aside className="standings__filter">
             <div className="filterButton">
               <button
                 className="filterButton__btn filterButton__btn--active"
@@ -211,26 +212,6 @@ const Standings = () => {
           <TeamInfo />
         )}
       </>
-    );
-  }
-
-  function changeLeagueTheme(leagueName) {
-    const root = document.documentElement;
-    root.style.setProperty(
-      "--leagueTheme",
-      LeagueDetails.prototype.getHexColor(leagueName)
-    );
-    root.style.setProperty(
-      "--leagueThemeRGB",
-      LeagueDetails.prototype.getRGBColor(leagueName)
-    );
-    root.style.setProperty(
-      "--leagueAccent",
-      LeagueDetails.prototype.getAccentColor(leagueName)
-    );
-    root.style.setProperty(
-      "--leagueText",
-      LeagueDetails.prototype.getTextColor(leagueName)
     );
   }
 

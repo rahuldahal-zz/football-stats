@@ -2,8 +2,6 @@ import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import TextWithIcon from "../TextWithIcon";
 
-let isUpdatedOnce = false;
-
 const Tabs = ({ currentSeason, leagueName, selected }) => {
   const leagueTrimmed = leagueName.toLowerCase().replace(" ", "");
   let navTabs = useRef(null);
@@ -51,13 +49,7 @@ const Tabs = ({ currentSeason, leagueName, selected }) => {
   function updateActiveTab(tab) {
     const { x, width } = tab.getBoundingClientRect();
     navTabs.style.setProperty("--active-tab-position", `${x - 12}px`);
-
-    if (isUpdatedOnce) {
-      navTabs.style.setProperty("--active-tab-width", `${width + 16}px`);
-    } else {
-      navTabs.style.setProperty("--active-tab-width", `${width + 24}px`);
-      isUpdatedOnce = true;
-    }
+    navTabs.style.setProperty("--active-tab-width", `${width + 24}px`);
     tab.classList.add("nav__tab--active");
   }
 };

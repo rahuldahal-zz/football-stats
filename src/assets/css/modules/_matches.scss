@@ -8,11 +8,7 @@
   }
 }
 
-.matchesContainer {
-  position: relative;
-  z-index: 2;
-  margin-top: 15vh;
-  padding-bottom: 10vh;
+.matchesWrap {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -174,7 +170,7 @@
     margin: 0;
 
     @include for_600 {
-      max-width: 150px;
+      max-width: 140px;
       overflow-x: auto;
     }
   }

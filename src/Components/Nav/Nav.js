@@ -9,9 +9,9 @@ export default function Nav({ leagueName, selectedTab }) {
   const leagueFullName = leagueDetails.getFullName(leagueName);
 
   return (
-    <>
+    <nav>
       <Header leagueFullName={leagueFullName} />
       <Tabs leagueName={leagueName} selected={selectedTab} />
-    </>
+    </nav>
   );
 }

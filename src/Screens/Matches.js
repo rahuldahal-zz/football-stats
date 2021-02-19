@@ -10,6 +10,7 @@ import { TweenLite, Power3 } from "gsap";
 import { Tween } from "gsap/gsap-core";
 import TextWithIcon from "../Components/TextWithIcon";
 import Nav from "../Components/Nav/Nav";
+import changeLeagueTheme from "../utils/changeLeagueTheme";
 
 const leagueDetails = new LeagueDetails();
 
@@ -128,7 +129,7 @@ const Matches = () => {
     return (
       <>
         <Nav leagueName={league} selectedTab="matches" />
-        <main className="matchesContainer">
+        <main className="matchesWrap container">
           <header className="matchday">
             <h3 className="matchday__count">Matchday: {matchDay}</h3>
             <button
@@ -246,26 +247,6 @@ const Matches = () => {
 
 function toggleCountdown(e) {
   e.currentTarget.classList.toggle("match--active");
-}
-
-function changeLeagueTheme(leagueName) {
-  const root = document.documentElement;
-  root.style.setProperty(
-    "--leagueTheme",
-    LeagueDetails.prototype.getHexColor(leagueName)
-  );
-  root.style.setProperty(
-    "--leagueThemeRGB",
-    LeagueDetails.prototype.getRGBColor(leagueName)
-  );
-  root.style.setProperty(
-    "--leagueAccent",
-    LeagueDetails.prototype.getAccentColor(leagueName)
-  );
-  root.style.setProperty(
-    "--leagueText",
-    LeagueDetails.prototype.getTextColor(leagueName)
-  );
 }
 
 export default Matches;

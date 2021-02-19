@@ -34,11 +34,11 @@ const Landing = () => {
       <h3 className="landing__subtitle">Select the League</h3>
 
       <section className="leagues">
-        <LeagueCard leagueName="premier league" />
-        <LeagueCard leagueName="la liga" />
-        <LeagueCard leagueName="serie a" />
+        <LeagueCard leagueName="premierleague" />
+        <LeagueCard leagueName="laliga" />
+        <LeagueCard leagueName="seriea" />
         <LeagueCard leagueName="bundesliga" />
-        <LeagueCard leagueName="ligue un" />
+        <LeagueCard leagueName="ligueun" />
       </section>
     </main>
   );
