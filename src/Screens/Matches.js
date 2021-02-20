@@ -116,7 +116,7 @@ const Matches = () => {
     if (shortNames.league !== leagueId) {
       return setIsLoaded(false);
     } else {
-      hideLoader();
+      isLoaded && hideLoader();
     }
   }, [league, isLoaded]);
 
