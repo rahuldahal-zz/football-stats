@@ -21,6 +21,10 @@
   flex-direction: column;
   filter: drop-shadow(-6px -6px 12px rgba(0, 0, 0, 0.2));
 
+  @include for_768 {
+    min-width: 94vw;
+  }
+
   &__name {
     margin-top: 0;
     margin-bottom: 1rem;
@@ -88,6 +92,7 @@
     bottom: 0;
     padding: 1rem;
     border-top-right-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
     background-color: var(--leagueTheme);
     color: #f4f4f4;
     font-weight: bold;

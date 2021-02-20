@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Matches from "../Screens/Matches";
 import Standings from "../Screens/Standings";
@@ -8,6 +8,10 @@ import Nav from "./Nav/Nav";
 export default function Container() {
   const { league, tab } = useParams();
   let TabToRender = Matches;
+
+  useEffect(() => {
+    document.documentElement.scrollTop = 0;
+  }, [tab]);
 
   switch (tab) {
     case "scorers":

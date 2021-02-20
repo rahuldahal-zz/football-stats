@@ -116,7 +116,10 @@ const Matches = () => {
     if (shortNames.league !== leagueId) {
       return setIsLoaded(false);
     } else {
-      isLoaded && hideLoader();
+      if (isLoaded) {
+        hideLoader();
+        detectTextOverflow();
+      }
     }
   }, [league, isLoaded]);
 
@@ -244,6 +247,22 @@ const Matches = () => {
     );
   }
 };
+
+function detectTextOverflow() {
+  const teamNames = document.querySelectorAll(".team__name");
+  console.log(teamNames);
+  teamNames.forEach((name) => {
+    const { scrollWidth, clientWidth, scrollHeight, clientHeight } = name;
+    if (scrollWidth > clientWidth) {
+      console.log(`${name.textContent} is overflowing horizontally`);
+      name.classList.add("team__name--overflow-x");
+    }
+    if (scrollHeight > clientHeight) {
+      console.log(`${name.textContent} is overflowing vertically`);
+      name.classList.add("team__name--overflow-y");
+    }
+  });
+}
 
 function toggleCountdown(e) {
   e.currentTarget.classList.toggle("match--active");
