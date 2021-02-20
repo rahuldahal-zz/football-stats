@@ -95,7 +95,7 @@ const Standings = () => {
     }
     return (
       <>
-        <Nav leagueName={league} selectedTab="standings" />
+        {/* <Nav leagueName={league} selectedTab="standings" /> */}
         <main className="standings container">
           <table className="standings__table">
             <thead>

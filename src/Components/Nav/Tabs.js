@@ -1,18 +1,23 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import TextWithIcon from "../TextWithIcon";
 
-const Tabs = ({ currentSeason, leagueName, selected }) => {
+const Tabs = ({ leagueName, selected }) => {
   const leagueTrimmed = leagueName.toLowerCase().replace(" ", "");
-  let navTabs = useRef(null);
-  let selectedTab = useRef(null);
+  const navTabs = useRef(null);
+  const [currentTab, setCurrentTab] = useState(selected);
+  const selectedTabRef = useRef(null);
 
   useEffect(() => {
-    updateActiveTab(selectedTab);
-  }, []);
+    updateActiveTab(selectedTabRef);
+  }, [currentTab, leagueName]);
+
+  useEffect(() => {
+    setCurrentTab(selected);
+  }, [leagueName]);
 
   return (
-    <section className="nav__tabs" ref={(el) => (navTabs = el)}>
+    <section className="nav__tabs" ref={navTabs}>
       <div className="wrapper">
         <Tab
           tabName="Matches"
@@ -36,21 +41,21 @@ const Tabs = ({ currentSeason, leagueName, selected }) => {
     const tabNameLowerCase = tabName.toLowerCase();
     return (
       <Link
-        ref={selected === tabNameLowerCase ? (el) => (selectedTab = el) : null}
+        ref={selected === tabNameLowerCase ? selectedTabRef : null}
         to={`/${leagueTrimmed}/${tabNameLowerCase}`}
-        state={{ currentSeason }}
         className="nav__tab"
+        onClick={() => setCurrentTab(tabNameLowerCase)}
       >
         <TextWithIcon textContent={tabName} pathData={iconData} />
       </Link>
     );
   }
 
-  function updateActiveTab(tab) {
-    const { x, width } = tab.getBoundingClientRect();
-    navTabs.style.setProperty("--active-tab-position", `${x - 12}px`);
-    navTabs.style.setProperty("--active-tab-width", `${width + 24}px`);
-    tab.classList.add("nav__tab--active");
+  function updateActiveTab({ current: currentTab }) {
+    const { x, width } = currentTab.getBoundingClientRect();
+    navTabs.current.style.setProperty("--active-tab-position", `${x - 12}px`);
+    navTabs.current.style.setProperty("--active-tab-width", `${width + 24}px`);
+    currentTab.classList.add("nav__tab--active");
   }
 };
 

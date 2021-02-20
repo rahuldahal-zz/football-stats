@@ -128,7 +128,7 @@ const Matches = () => {
   } else {
     return (
       <>
-        <Nav leagueName={league} selectedTab="matches" />
+        {/* <Nav leagueName={league} selectedTab="matches" /> */}
         <main className="matchesWrap container">
           <header className="matchday">
             <h3 className="matchday__count">Matchday: {matchDay}</h3>

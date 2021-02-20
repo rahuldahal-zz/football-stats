@@ -86,7 +86,7 @@ const Scorers = () => {
   } else {
     return (
       <>
-        <Nav leagueName={league} selectedTab="scorers" />
+        {/* <Nav leagueName={league} selectedTab="scorers" /> */}
 
         <main className="scorers container">
           <section className="scorers">

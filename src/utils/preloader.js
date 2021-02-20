@@ -6,7 +6,8 @@ function setLoader() {
 
 export function showLoader() {
   !loader && setLoader();
-  loader && loader.classList.remove("loader--hidden");
+  loader && loader.classList.remove("loader--loaded");
+  loader && loader.classList.add("loader--shown");
 }
 
 export function hideLoader() {
@@ -14,6 +15,7 @@ export function hideLoader() {
 
   loader && loader.classList.add("loader--loaded");
   setTimeout(() => {
-    loader && loader.classList.add("loader--hidden");
-  }, 300);
+    loader && loader.classList.remove("loader--shown");
+    loader && loader.classList.remove("loader--loaded");
+  }, 600);
 }

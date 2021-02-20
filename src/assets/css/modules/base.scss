@@ -12,6 +12,7 @@ body {
   background-size: cover;
   background-attachment: fixed !important;
   overflow-x: hidden;
+  min-height: 110vh;
 
   @include for_768 {
     background-image: url("https://res.cloudinary.com/rdaahal/image/upload/v1609243890/FootballStats/background_mobile_hlw9ao.webp");
