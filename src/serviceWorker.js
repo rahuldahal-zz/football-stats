@@ -1,4 +1,4 @@
-const CACHE_NAME = "site-static-v3.1";
+const CACHE_NAME = "site-static-v3.2";
 let staticAssets = [
   "/",
   "/styles.css",
