@@ -37,13 +37,13 @@ const Matches = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [matches, setMatches] = useState([]);
   const [matchDay, setMatchDay] = useState(null);
+  const [matchDayToShow, setMatchDayToShow] = useState(null);
+  const [endDate, setEndDate] = useState(null);
   const [shortNames, setShortNames] = useState({});
   const [selectedTeam, setSelectedTeam] = useState(null);
 
   useEffect(() => {
     if (isLoaded) {
-      // matchday header
-
       TweenLite.from(".matchday__count", {
         duration: 0.3,
         delay: 0.5,
@@ -77,16 +77,18 @@ const Matches = () => {
   }, [isLoaded]);
 
   useEffect(() => {
-    setMatchDay(null);
+    setMatchDayToShow(null);
     setShortNames({});
     changeLeagueTheme(league);
   }, [league]);
 
   useEffect(() => {
-    matchDay === null &&
+    matchDayToShow === null &&
       fetchData(null, leagueId)
         .then((leagueDetails) => {
           setMatchDay(leagueDetails.currentSeason.currentMatchday);
+          setMatchDayToShow(leagueDetails.currentSeason.currentMatchday);
+          setEndDate(leagueDetails.currentSeason.endDate);
           return LocalStorage.prototype.isTeamNamesOnLocalStorage(
             leagueId,
             leagueDetails.currentSeason.startDate
@@ -96,11 +98,11 @@ const Matches = () => {
           setShortNames({ league: leagueId, data: response });
         })
         .catch((err) => console.log(err));
-  }, [matchDay]);
+  }, []);
 
   useEffect(() => {
     shortNames.league &&
-      fetchData("matches", leagueId, { matchday: matchDay }).then(
+      fetchData("matches", leagueId, { matchday: matchDayToShow }).then(
         (result) => {
           setMatches(result.matches);
           setIsLoaded(true);
@@ -110,7 +112,7 @@ const Matches = () => {
           setError(error);
         }
       );
-  }, [shortNames, matchDay]);
+  }, [shortNames, matchDayToShow]);
 
   useEffect(() => {
     if (shortNames.league !== leagueId) {
@@ -134,12 +136,16 @@ const Matches = () => {
         {/* <Nav leagueName={league} selectedTab="matches" /> */}
         <main className="matchesWrap container">
           <header className="matchday">
-            <h3 className="matchday__count">Matchday: {matchDay}</h3>
+            <h3 className="matchday__count">Matchday: {matchDayToShow}</h3>
             <button
               className="matchday__picker"
               onClick={() => {
-                setMatchDay(matchDay - 1);
-                setIsLoaded(false);
+                if (matchDayToShow > 1) {
+                  setMatchDayToShow(matchDayToShow - 1);
+                  setIsLoaded(false);
+                } else {
+                  console.log("You are already on the first matchday.");
+                }
               }}
             >
               <TextWithIcon
@@ -150,8 +156,12 @@ const Matches = () => {
             <button
               className="matchday__picker"
               onClick={() => {
-                setMatchDay(matchDay + 1);
-                setIsLoaded(false);
+                if (matchDayToShow !== matchDay) {
+                  setMatchDayToShow(matchDayToShow + 1);
+                  setIsLoaded(false);
+                } else {
+                  console.log("the season has ended.");
+                }
               }}
             >
               <TextWithIcon
