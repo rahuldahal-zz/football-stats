@@ -1,8 +1,8 @@
 {
-  "name": "adopt-me",
+  "name": "football-stats",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/App.js",
   "scripts": {
     "dev": "concurrently \"node wdmServer\" \"netlify dev -o -p=3000\"",
     "build": "webpack",
@@ -11,7 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
