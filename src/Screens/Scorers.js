@@ -7,7 +7,7 @@ import LocalStorage from "../utils/localStorage";
 import { showLoader, hideLoader } from "../utils/preloader";
 import TweenLite from "gsap";
 import TextWithIcon from "../Components/TextWithIcon";
-import Nav from "../Components/Nav/Nav";
+import Error from "../Components/Error";
 import changeLeagueTheme from "../utils/changeLeagueTheme";
 
 const leagueDetails = new LeagueDetails();
@@ -60,7 +60,13 @@ const Scorers = () => {
       fetchData("scorers", leagueId).then(
         (result) => {
           console.log(result);
-          setScorers(result.scorers);
+          if (result.scorers.length > 0) {
+            setScorers(result.scorers);
+          } else {
+            setError({
+              message: "The league has not started yet.",
+            });
+          }
           setIsLoaded(true);
         },
         (error) => {
@@ -79,7 +85,9 @@ const Scorers = () => {
   }, [league, isLoaded]);
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    const { message } = error;
+    const options = { message };
+    return <Error options={options} />;
   } else if (!isLoaded || shortNames.league !== leagueId) {
     showLoader();
     return null;
