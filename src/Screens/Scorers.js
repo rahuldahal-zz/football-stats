@@ -59,7 +59,6 @@ const Scorers = () => {
     shortNames.league &&
       fetchData("scorers", leagueId).then(
         (result) => {
-          console.log(result);
           if (result.scorers.length > 0) {
             setScorers(result.scorers);
           } else {
@@ -99,12 +98,8 @@ const Scorers = () => {
         <main className="scorers container">
           <section className="scorers">
             {scorers.map((scorer) => {
-              const {
-                name,
-                nationality,
-                position,
-                dateOfBirth,
-              } = scorer.player;
+              const { name, nationality, position, dateOfBirth } =
+                scorer.player;
               const team = shortNames.data.find(
                 (name) => name.id === scorer.team.id
               );

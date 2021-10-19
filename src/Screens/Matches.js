@@ -260,7 +260,6 @@ const Matches = () => {
 
 function detectTextOverflow() {
   const teamNames = document.querySelectorAll(".team__name");
-  console.log(teamNames);
   teamNames.forEach((name) => {
     const { scrollWidth, clientWidth, scrollHeight, clientHeight } = name;
     if (scrollWidth > clientWidth) {

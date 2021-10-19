@@ -8,13 +8,10 @@ const TeamInfo = ({ teamId, setSelectedTeam }) => {
   const [error, setError] = useState(null);
   const [teamInfo, setTeamInfo] = useState(null);
 
-  console.log("team info");
-
   useEffect(() => {
     teamId &&
       fetchData("particularTeam", teamId).then(
         (result) => {
-          console.log(result);
           setTeamInfo(result);
         },
         (error) => {
