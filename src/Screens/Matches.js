@@ -136,7 +136,7 @@ const Matches = () => {
         {/* <Nav leagueName={league} selectedTab="matches" /> */}
         <main className="matchesWrap container">
           <header className="matchday">
-            <h3 className="matchday__count">Matchday: {matchDayToShow}</h3>
+            <h2 className="matchday__count">Matchday: {matchDayToShow}</h2>
             <button
               className="matchday__picker"
               onClick={() => {
@@ -166,7 +166,7 @@ const Matches = () => {
             >
               <TextWithIcon
                 textContent="Next"
-                pathData={["M17 8l4 4m0 0l-4 4m4-4H3"]}
+                pathData={["M17 8l4 4m0 0l-4 4m4-4h2"]}
                 iconAlign="right"
               />
             </button>
@@ -235,7 +235,7 @@ const Matches = () => {
             onLoad={(e) => e.target.classList.add("team__logo--loaded")}
             className="team__logo"
           />
-          <h3 className="team__name">{homeTeam.shortName}</h3>
+          <h2 className="team__name">{homeTeam.shortName}</h2>
         </div>
         <strong>v/s</strong>
         <div
@@ -251,7 +251,7 @@ const Matches = () => {
             onLoad={(e) => e.target.classList.add("team__logo--loaded")}
             className="team__logo"
           />
-          <h3 className="team__name">{awayTeam.shortName}</h3>
+          <h2 className="team__name">{awayTeam.shortName}</h2>
         </div>
       </div>
     );

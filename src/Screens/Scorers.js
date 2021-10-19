@@ -106,7 +106,7 @@ const Scorers = () => {
 
               return (
                 <div key={scorer.player.id} className="scorer">
-                  <h3 className="scorer__name">{name}</h3>
+                  <h2 className="scorer__name">{name}</h2>
                   <p className="position">
                     <TextWithIcon
                       textContent={position}
