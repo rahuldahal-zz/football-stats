@@ -49,7 +49,11 @@ const TeamInfo = ({ teamId, setSelectedTeam }) => {
       defenders = [],
       midfielders = [],
       attackers = [];
-    let coach;
+    let coach = {
+      name: "Sample name",
+      nationality: "German",
+      dateOfBirth: new Date("1984"),
+    };
 
     squad.forEach((player) => {
       if (player.role === "COACH") {
@@ -112,21 +116,21 @@ const TeamInfo = ({ teamId, setSelectedTeam }) => {
         <h1 className="teamInfo__name">{name}</h1>
         <div className="details">
           <div className="general">
-            <h2>General Info.</h2>
+            <h1>General Info.</h1>
             <div className="general__content">
               <div className="general__info">
                 <div className="general__country">
-                  <h4>Country</h4>
+                  <h3>Country</h3>
                   <em>{area.name}</em>
                 </div>
                 <div className="general__activeCompetitions">
-                  <h4>Active Competitions</h4>
+                  <h3>Active Competitions</h3>
                   {activeCompetitions.map((competition) => {
                     return <em key={competition.id}>{competition.name}</em>;
                   })}
                 </div>
                 <div className="general__stadium">
-                  <h4>Stadium</h4>
+                  <h3>Stadium</h3>
                   <TextWithIcon
                     textContent={venue}
                     pathData={[
@@ -136,7 +140,7 @@ const TeamInfo = ({ teamId, setSelectedTeam }) => {
                   />
                 </div>
                 <div className="general__contact">
-                  <h4>Contact</h4>
+                  <h3>Contact</h3>
                   <address>{address}</address>
                   <span className="general__email">
                     {email ? (
@@ -214,11 +218,11 @@ const TeamInfo = ({ teamId, setSelectedTeam }) => {
           </div>
 
           <div className="teamSquad">
-            <h2>Squad</h2>
+            <h1>Squad</h1>
             <div className="manager">
-              <h3>Manager</h3>
+              <h2>Manager</h2>
               <div className="player">
-                <h4 className="player__name">{coach.name}</h4>
+                <h3 className="player__name">{coach.name}</h3>
                 <em className="player__nationality">{coach.nationality}</em>
                 <small className="player__age">
                   {new Date().getFullYear() -
@@ -239,7 +243,7 @@ const TeamInfo = ({ teamId, setSelectedTeam }) => {
                       {s.players.map((player) => {
                         return (
                           <div key={player.id} className="player">
-                            <h4 className="player__name">{player.name}</h4>
+                            <h3 className="player__name">{player.name}</h3>
                             <em className="player__nationality">
                               {player.nationality}
                             </em>
