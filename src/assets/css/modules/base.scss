@@ -1,9 +1,18 @@
 @import "colors";
 
 :root {
-  --headingFont: "Quicksand", sans-serif;
-  --bodyFont: "Roboto", "sans-serif";
+  --heading-font: "Quicksand", sans-serif;
+  --body-font: "Roboto", "sans-serif";
+  line-height: 1.25; /*125% of the font-size*/
   overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin-top: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -13,6 +22,7 @@ body {
   background-attachment: fixed !important;
   overflow-x: hidden;
   min-height: 110vh;
+  font-family: var(--body-font), arial, verdana, Tahoma, sans-serif;
 
   @include for_768 {
     background-image: url("https://res.cloudinary.com/rdaahal/image/upload/v1609243890/FootballStats/background_mobile_hlw9ao.webp");
@@ -42,12 +52,6 @@ body {
     pointer-events: none;
   }
 
-  h1 {
-    @include for_768 {
-      font-size: 2.3rem;
-    }
-  }
-
   .container {
     position: relative;
     z-index: 2;
@@ -74,4 +78,67 @@ body {
       }
     }
   }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 1.3rem 0;
+  font-family: var(--heading-font), "Lucida Bright", Georgia, serif;
+}
+
+h1 {
+  @include for_768 {
+    font-size: 2.3rem;
+  }
+}
+
+img,
+video {
+  width: 100%;
+  height: auto;
+}
+
+/*making the typography consistent for inputFields, buttons, tables*/
+input,
+button,
+table,
+select,
+textarea {
+  font-family: inherit;
+}
+
+/*making the "table" look like a "table"*/
+table,
+th,
+tr,
+td {
+  border: 2px solid var(--primary-text-color);
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 0.5rem 0.75rem;
+}
+
+table tr:nth-child(even) {
+  background-color: #eee;
+}
+
+button {
+  position: relative;
+  background-color: var(--accent-color);
+  color: var(--primary-background-color);
+  border: none;
+  border-radius: 0.5em;
+  padding: 0.5rem 1rem;
+  width: max-content;
+  font-size: 1rem;
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.3s linear;
 }

@@ -8,7 +8,7 @@ import { hideLoader } from "./utils/preloader";
 
 // CSS and SCSS
 
-import "extended-normalize.css";
+import "normalize.css";
 import "./assets/css/style.scss";
 
 const App = function () {

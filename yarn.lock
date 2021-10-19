@@ -2833,13 +2833,6 @@ extend-shallow@^3.0.0, extend-shallow@^3.0.2:
     assign-symbols "^1.0.0"
     is-extendable "^1.0.1"
 
-extended-normalize.css@^2.1.1:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/extended-normalize.css/-/extended-normalize.css-2.4.0.tgz#b908d7eae626915e58b73f3f8e294cafa2db54ad"
-  integrity sha512-Fiu6J/PdifCbypRfl+KzbxLPqZpGhy5TN/Qed4CF9xpA29s0alVi/NDVnWlVoxGs1lQbXMJXnB9ll5ywQR4XFA==
-  dependencies:
-    normalize.css "^8.0.1"
-
 extglob@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/extglob/-/extglob-2.0.4.tgz#ad00fe4dc612a9232e8718711dc5cb5ab0285543"
